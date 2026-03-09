@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 import bcrypt from "bcryptjs";
+import Report from "./report.js";
 
 class User extends Model {
     async comparePassword(plain) {
@@ -55,4 +56,5 @@ User.init(
         },
     },
 );
+
 export default User;

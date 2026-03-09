@@ -11,9 +11,12 @@ REGISTER USER
 */
 const register = async (req, res) => {
     try {
-        const { email, fullName, password, role } = req.body;
+        const { email, name, password, role } = req.body;
 
-        if (!email || !password || !fullName) {
+        const userRole = role || "volunteer";
+
+
+        if (!email || !password || !name) {
             return res.status(400).json({
                 message: "Please provide all required fields"
             });
@@ -38,7 +41,7 @@ const register = async (req, res) => {
 
         await Volunteer.create({
             user_id: newUser.id,
-            fullName,
+            name,
             skills: []
         });
 

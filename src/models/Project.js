@@ -1,46 +1,23 @@
-import pool from "../config/database.js";
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../config/database.js";
 
-const Project = {
+class Project extends Model { }
 
-    async findAllProjects() {
-        const [rows] = await pool.query(
-            "SELECT * FROM projects ORDER BY created_at DESC"
-        );
-        return rows;
+Project.init(
+    {
+        name: { type: DataTypes.STRING, allowNull: false },
+        description: { type: DataTypes.TEXT },
+        startDate: { type: DataTypes.DATE, field: "start_date" },
+        endDate: { type: DataTypes.DATE, field: "end_date" },
+        status: { type: DataTypes.STRING, defaultValue: "pending" },
+        createdBy: { type: DataTypes.INTEGER, field: "created_by" },
     },
-
-    async findProjectById(id) {
-        const [rows] = await pool.query(
-            "SELECT * FROM projects WHERE id = ?",
-            [id]
-        );
-        return rows[0];
-    },
-
-    async createProject(data) {
-        const { name, description, startDate, endDate, status, createdBy } = data;
-
-        const [result] = await pool.query(
-            `INSERT INTO projects (name, description, start_date, end_date, status, created_by)
-             VALUES (?, ?, ?, ?, ?, ?)`,
-            [name, description, startDate, endDate, status, createdBy]
-        );
-
-        return {
-            id: result.insertId,
-            ...data
-        };
-    },
-
-    async updateProjectStatus(id, status) {
-        await pool.query(
-            "UPDATE projects SET status = ? WHERE id = ?",
-            [status, id]
-        );
-
-        return { id, status };
+    {
+        sequelize,
+        modelName: "Project",
+        tableName: "projects",
+        timestamps: true,
     }
-
-};
+);
 
 export default Project;

@@ -1,38 +1,40 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../config/database.js"; // Make sure it's the Sequelize instance
 
-const Notification = sequelize.define("Notification", {
+class Notification extends Model { }
 
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+Notification.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        userId: {                                     // Use camelCase in JS, map to snake_case in DB
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: "user_id",
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        message: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
+        isRead: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            field: "is_read",
+        },
     },
-
-    user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    message: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
-
-    is_read: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-    },
-
-}, {
-    tableName: "notifications"
-
-}
+    {
+        sequelize,
+        modelName: "Notification",
+        tableName: "notifications",
+        timestamps: true,                       // adds createdAt and updatedAt automatically
+    }
 );
 
 export default Notification;

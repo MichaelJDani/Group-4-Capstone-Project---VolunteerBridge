@@ -1,82 +1,49 @@
-import pool from "../config/database.js";
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../config/database.js";
 
-const Task = {
+class Task extends Model { }
 
-    async findTasksByProjectId(projectId) {
-        const [rows] = await pool.query(
-            "SELECT * FROM tasks WHERE project_id = ?",
-            [projectId]
-        );
-        return rows;
+Task.init(
+    {
+        projectId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: "project_id",
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
+            type: DataTypes.TEXT,
+        },
+        dueDate: {
+            type: DataTypes.DATE,
+            field: "due_date",
+        },
+        estimatedHours: {
+            type: DataTypes.INTEGER,
+            field: "estimated_hours",
+        },
+        status: {
+            type: DataTypes.STRING,
+            defaultValue: "pending",
+        },
+        createdBy: {
+            type: DataTypes.INTEGER,
+            field: "created_by",
+        },
+        assignedTo: {
+            type: DataTypes.INTEGER,
+            field: "assigned_to",
+        },
     },
-
-    async findTaskById(id) {
-        const [rows] = await pool.query(
-            "SELECT * FROM tasks WHERE id = ?",
-            [id]
-        );
-        return rows[0];
-    },
-
-    async createTask(data) {
-
-        const {
-            projectId,
-            title,
-            description,
-            dueDate,
-            estimatedHours,
-            status,
-            createdBy
-        } = data;
-
-        const [result] = await pool.query(
-            `INSERT INTO tasks 
-            (project_id, title, description, due_date, estimated_hours, status, created_by)
-            VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [
-                projectId,
-                title,
-                description,
-                dueDate,
-                estimatedHours,
-                status,
-                createdBy
-            ]
-        );
-
-        return {
-            id: result.insertId,
-            ...data
-        };
-    },
-
-    async assignTaskToVolunteer(taskId, volunteerId) {
-
-        await pool.query(
-            "UPDATE tasks SET assigned_to = ? WHERE id = ?",
-            [volunteerId, taskId]
-        );
-
-        return {
-            taskId,
-            volunteerId
-        };
-    },
-
-    async updateTaskStatus(taskId, status) {
-
-        await pool.query(
-            "UPDATE tasks SET status = ? WHERE id = ?",
-            [status, taskId]
-        );
-
-        return {
-            taskId,
-            status
-        };
+    {
+        sequelize,
+        modelName: "Task",
+        tableName: "tasks",
+        timestamps: true, // automatically adds createdAt and updatedAt
     }
-
-};
+);
 
 export default Task;
