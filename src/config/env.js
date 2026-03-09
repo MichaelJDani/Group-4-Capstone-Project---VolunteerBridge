@@ -9,7 +9,7 @@ export const configuration = {
     DB_HOST: process.env.DB_HOST || 'localhost',
     DB_USER: process.env.DB_USER || 'volunteer_user',
     DB_PASSWORD: process.env.DB_PASSWORD || 'group4@techrush2026',
-    DB_NAME: process.env.DB_NAME || 'volunteer-bridge',
+    DB_NAME: process.env.DB_NAME || 'volunteer_bridge',
     DB_DIALECT: process.env.DB_DIALECT || 'mysql',
     JWT_SECRET: process.env.JWT_SECRET || 'secret',
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',

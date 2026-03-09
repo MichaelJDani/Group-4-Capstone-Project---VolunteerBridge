@@ -9,62 +9,50 @@ import Volunteer from "../models/volunteer.js";
 REGISTER USER
 ========================
 */
+
 const register = async (req, res) => {
     try {
         const { email, name, password, role } = req.body;
 
-        const userRole = role || "volunteer";
-
-
         if (!email || !password || !name) {
-            return res.status(400).json({
-                message: "Please provide all required fields"
-            });
+            return res.status(400).json({ message: "Please provide all required fields" });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ message: "Password must be at least 6 characters" });
         }
 
         const existingUser = await User.findOne({ where: { email } });
-
         if (existingUser) {
-            return res.status(400).json({
-                message: "User already exists"
-            });
+            return res.status(400).json({ message: "User already exists" });
         }
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
+        const userRole = role || "volunteer";
 
         const newUser = await User.create({
             email,
             password_hash: hashedPassword,
-            role: role || "volunteer"
+            role: userRole
         });
 
-        await Volunteer.create({
-            user_id: newUser.id,
-            name,
-            skills: []
-        });
+        if (userRole === "volunteer") {
+            await Volunteer.create({ user_id: newUser.id, name, skills: [] });
+        }
 
         const token = generateToken(newUser.id, newUser.role);
 
         res.status(201).json({
             message: "User registered successfully",
             token,
-            user: {
-                id: newUser.id,
-                email: newUser.email,
-                role: newUser.role
-            }
+            user: { id: newUser.id, email: newUser.email, role: newUser.role }
         });
 
     } catch (error) {
-        res.status(500).json({
-            message: "Registration failed",
-            error: error.message
-        });
+        res.status(500).json({ message: "Registration failed", error: error.message });
     }
 };
-
 
 /*
 ========================
@@ -179,7 +167,7 @@ const forgotPassword = async (req, res) => {
 
         const resetUrl = `${req.protocol}://${req.get(
             "host"
-        )}/api/auth/resetpassword/${resetToken}`;
+        )}/api/auth/reset-password/${resetToken}`;
 
         res.status(200).json({
             message: "Password reset link generated",

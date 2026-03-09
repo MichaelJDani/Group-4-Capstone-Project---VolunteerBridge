@@ -22,7 +22,7 @@ router.post("/login", login);
 // Password reset
 
 router.post("/forgot-password", forgotPassword);   // sends reset token (email or app)
-router.post("/reset-password", resetPassword);     // resets password using token
+router.post("/reset-password/:token", resetPassword);     // resets password using token
 
 // Protected routes
 router.post("/logout", authMiddleware, logout);
