@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { configuration } from "./src/config/env.js";
+import configuration from "./src/config/env.js";
 import { corsOptions } from "./src/config/cors.js";
 import pool from "./src/config/database.js"; // optional for raw queries
 import userRoutes from "./src/routes/userRoutes.js";
@@ -13,6 +13,7 @@ import reportRoutes from "./src/routes/reportRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import errorMiddleware from "./src/middleware/error.js";
 import { sequelize } from "./src/models/index.js"; // Sequelize instance with models
+
 
 const app = express();
 const PORT = configuration.PORT || 5000;

@@ -1,4 +1,5 @@
 import express from "express";
+import User from "../models/user.js";
 import authMiddleware from "../middleware/auth.js";
 import { getUserProfile, updateUserProfile } from "../controllers/user.controller.js";
 

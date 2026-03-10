@@ -3,26 +3,21 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import User from "../models/user.js";
 import Volunteer from "../models/volunteer.js";
+import { Op } from "sequelize";
 
 /*
 ========================
 REGISTER USER
 ========================
 */
-
 const register = async (req, res) => {
     try {
-        const { email, name, password, role, phone_number } = req.body;
 
-        if (!email || !password || !name) {
-            return res.status(400).json({
-                message: "Please provide all required fields"
-            });
-        }
+        const { name, email, password } = req.body;
 
-        if (password.length < 6) {
+        if (!name || !email || !password) {
             return res.status(400).json({
-                message: "Password must be at least 6 characters"
+                message: "All fields are required"
             });
         }
 
@@ -34,41 +29,23 @@ const register = async (req, res) => {
             });
         }
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-        const userRole = role || "volunteer";
-
-        const newUser = await User.create({
+        const user = await User.create({
             name,
             email,
-            phone_number: phone_number || null,
-            password: hashedPassword,
-            role: userRole
+            password
         });
-
-        if (userRole === "volunteer") {
-            await Volunteer.create({
-                user_id: newUser.id
-            });
-        }
-
-        const token = generateToken(newUser.id, newUser.role);
 
         return res.status(201).json({
             message: "User registered successfully",
-            token,
-            user: {
-                id: newUser.id,
-                name: newUser.name,
-                email: newUser.email,
-                role: newUser.role
-            }
+            user
         });
     } catch (error) {
-        return res.status(500).json({
+
+        res.status(500).json({
             message: "Registration failed",
             error: error.message
         });
+
     }
 };
 
@@ -77,16 +54,11 @@ const register = async (req, res) => {
 LOGIN USER
 ========================
 */
+
 const login = async (req, res) => {
     try {
 
         const { email, password } = req.body;
-
-        if (!email || !password) {
-            return res.status(400).json({
-                message: "Please provide email and password"
-            });
-        }
 
         const user = await User.findOne({ where: { email } });
 
@@ -96,12 +68,9 @@ const login = async (req, res) => {
             });
         }
 
-        const passwordMatch = await bcrypt.compare(
-            password,
-            user.password_hash
-        );
+        const isMatch = await user.comparePassword(password);
 
-        if (!passwordMatch) {
+        if (!isMatch) {
             return res.status(401).json({
                 message: "Invalid credentials"
             });
@@ -109,14 +78,13 @@ const login = async (req, res) => {
 
         const token = generateToken(user.id, user.role);
 
+        user.lastLogin = new Date();
+        await user.save();
+
         res.status(200).json({
             message: "Login successful",
             token,
-            user: {
-                id: user.id,
-                email: user.email,
-                role: user.role
-            }
+            user
         });
 
     } catch (error) {
@@ -129,12 +97,12 @@ const login = async (req, res) => {
     }
 };
 
-
 /*
 ========================
 LOGOUT USER
 ========================
 */
+
 const logout = async (req, res) => {
     try {
 
@@ -158,6 +126,7 @@ const logout = async (req, res) => {
 FORGOT PASSWORD
 ========================
 */
+
 const forgotPassword = async (req, res) => {
     try {
 
@@ -178,8 +147,8 @@ const forgotPassword = async (req, res) => {
             .update(resetToken)
             .digest("hex");
 
-        user.reset_password_token = resetTokenHash;
-        user.reset_password_expire = Date.now() + 10 * 60 * 1000;
+        user.resetToken = resetTokenHash;
+        user.resetTokenExpiry = Date.now() + 10 * 60 * 1000;
 
         await user.save();
 
@@ -208,61 +177,48 @@ const forgotPassword = async (req, res) => {
 RESET PASSWORD
 ========================
 */
-const resetPassword = async (req, res) => {
-    try {
 
+
+const resetPassword = async (req, res) => {
+
+    try {
         const { token } = req.params;
 
-        const hashedToken = crypto
-            .createHash("sha256")
-            .update(token)
-            .digest("hex");
+        if (req.body.password.length < 6) {
+            return res.status(400).json({ message: "Password must be at least 6 characters" });
+        }
+
+        const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
         const user = await User.findOne({
             where: {
-                reset_password_token: hashedToken
+                resetToken: hashedToken,
+                resetTokenExpiry: { [Op.gt]: Date.now() }
             }
         });
 
         if (!user) {
-            return res.status(400).json({
-                message: "Invalid or expired token"
-            });
+            return res.status(400).json({ message: "Invalid or expired token" });
         }
 
-        if (user.reset_password_expire < Date.now()) {
-            return res.status(400).json({
-                message: "Reset token expired"
-            });
-        }
+        // Set new password (Sequelize hook will hash it)
+        user.password = req.body.password;
 
-        const salt = await bcrypt.genSalt(10);
-
-        const hashedPassword = await bcrypt.hash(
-            req.body.password,
-            salt
-        );
-
-        user.password_hash = hashedPassword;
-        user.reset_password_token = null;
-        user.reset_password_expire = null;
+        // Clear reset token and expiry
+        user.resetToken = null;
+        user.resetTokenExpiry = null;
 
         await user.save();
 
-        res.status(200).json({
-            message: "Password reset successful"
-        });
+        res.status(200).json({ message: "Password reset successful" });
 
     } catch (error) {
-
         res.status(500).json({
             message: "Reset password failed",
             error: error.message
         });
-
     }
 };
-
 
 export {
     register,
