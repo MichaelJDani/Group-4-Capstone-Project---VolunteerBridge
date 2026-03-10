@@ -179,7 +179,6 @@ RESET PASSWORD
 ========================
 */
 
-import { Op } from "sequelize";
 
 const resetPassword = async (req, res) => {
 
