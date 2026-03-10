@@ -12,19 +12,26 @@ REGISTER USER
 
 const register = async (req, res) => {
     try {
-        const { email, name, password, role } = req.body;
+        const { email, name, password, role, phone_number } = req.body;
 
         if (!email || !password || !name) {
-            return res.status(400).json({ message: "Please provide all required fields" });
+            return res.status(400).json({
+                message: "Please provide all required fields"
+            });
         }
 
         if (password.length < 6) {
-            return res.status(400).json({ message: "Password must be at least 6 characters" });
+            return res.status(400).json({
+                message: "Password must be at least 6 characters"
+            });
         }
 
         const existingUser = await User.findOne({ where: { email } });
+
         if (existingUser) {
-            return res.status(400).json({ message: "User already exists" });
+            return res.status(400).json({
+                message: "User already exists"
+            });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -32,25 +39,36 @@ const register = async (req, res) => {
         const userRole = role || "volunteer";
 
         const newUser = await User.create({
+            name,
             email,
-            password_hash: hashedPassword,
+            phone_number: phone_number || null,
+            password: hashedPassword,
             role: userRole
         });
 
         if (userRole === "volunteer") {
-            await Volunteer.create({ user_id: newUser.id, name, skills: [] });
+            await Volunteer.create({
+                user_id: newUser.id
+            });
         }
 
         const token = generateToken(newUser.id, newUser.role);
 
-        res.status(201).json({
+        return res.status(201).json({
             message: "User registered successfully",
             token,
-            user: { id: newUser.id, email: newUser.email, role: newUser.role }
+            user: {
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email,
+                role: newUser.role
+            }
         });
-
     } catch (error) {
-        res.status(500).json({ message: "Registration failed", error: error.message });
+        return res.status(500).json({
+            message: "Registration failed",
+            error: error.message
+        });
     }
 };
 
