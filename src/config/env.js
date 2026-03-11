@@ -20,3 +20,5 @@ export const configuration = {
     SMTP_PASSWORD: process.env.SMTP_PASSWORD || '',
     MAIL_FROM: process.env.MAIL_FROM || ''
 }
+
+export default configuration;
