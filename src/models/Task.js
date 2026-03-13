@@ -1,7 +1,42 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class Task extends Model { }
+class Task extends Model {
+
+    static async createTask(data) {
+        return await Task.create(data);
+    }
+
+    static async findTasksByProjectId(projectId) {
+        return await Task.findAll({
+            where: { projectId }
+        });
+    }
+
+    static async findTaskById(id) {
+        return await Task.findByPk(id);
+    }
+
+    static async assignTaskToVolunteer(id, userId) {
+        const task = await Task.findByPk(id);
+        if (!task) return null;
+
+        task.assignedTo = userId;
+        await task.save();
+
+        return task;
+    }
+
+    static async updateTaskStatus(id, status) {
+        const task = await Task.findByPk(id);
+        if (!task) return null;
+
+        task.status = status;
+        await task.save();
+
+        return task;
+    }
+}
 
 Task.init(
     {
@@ -42,7 +77,7 @@ Task.init(
         sequelize,
         modelName: "Task",
         tableName: "tasks",
-        timestamps: true, // automatically adds createdAt and updatedAt
+        timestamps: true,
     }
 );
 

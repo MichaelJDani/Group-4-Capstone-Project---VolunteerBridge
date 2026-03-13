@@ -1,14 +1,11 @@
 import Notification from "../models/notification.model.js";
 
-/*
-Create notification
-*/
 export const createNotification = async (userId, title, message) => {
 
     try {
 
         const notification = await Notification.create({
-            user_id: userId,
+            userId,
             title,
             message
         });
@@ -23,22 +20,14 @@ export const createNotification = async (userId, title, message) => {
 
 };
 
-
-/*Get notifications for a user*/
-
-
 export const getUserNotifications = async (userId) => {
 
     return await Notification.findAll({
-        where: { user_id: userId },
+        where: { userId },
         order: [["createdAt", "DESC"]]
     });
 
 };
-
-
-/*Mark notification as read*/
-
 
 export const markNotificationRead = async (notificationId) => {
 
@@ -48,7 +37,7 @@ export const markNotificationRead = async (notificationId) => {
         throw new Error("Notification not found");
     }
 
-    notification.is_read = true;
+    notification.isRead = true;
 
     await notification.save();
 

@@ -16,18 +16,29 @@ export const systemReport = async (req, res) => {
 // Create a new report
 export const createReport = async (req, res) => {
     try {
-        const { title, message, projectId } = req.body;
+        const { title, content, projectId, taskId } = req.body;
 
         const report = await Report.create({
             title,
-            message,
-            userId: req.user.id,      // from authMiddleware
+            content,
+            userId: req.user.id,
             projectId,
+            taskId
         });
 
-        res.status(201).json({ success: true, data: report });
+        res.status(201).json({
+            success: true,
+            data: report
+        });
+
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+
+        console.error("createReport error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
 };
 
@@ -36,7 +47,7 @@ export const getReportById = async (req, res) => {
     try {
         const report = await Report.findByPk(req.params.id, {
             include: [
-                { model: User, as: "user", attributes: ["id", "fullName", "email"] },
+                { model: User, as: "reportsOwner", attributes: ["id", "name", "email"] },
                 { model: Project, as: "project", attributes: ["id", "name"] },
             ],
         });
@@ -68,7 +79,7 @@ export const getReportsByProject = async (req, res) => {
     try {
         const reports = await Report.findAll({
             where: { projectId: req.params.projectId },
-            include: [{ model: User, as: "user", attributes: ["id", "fullName", "email"] }],
+            include: [{ model: User, as: "reportsOwner", attributes: ["id", "name", "email"] }],
         });
 
         res.status(200).json({ success: true, data: reports });
