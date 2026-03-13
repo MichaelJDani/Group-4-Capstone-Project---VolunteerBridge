@@ -12,29 +12,83 @@ This project is part of a collaborative backend development exercise.
 
 ## 🚀 Tech Stack
 
-* Node.js
-* Express.js
-* MySQL
-* Sequelize ORM
-* JWT Authentication
-* dotenv
-* bcrypt
-* Postman (for testing)
+- Node.js
+- Express.js
+- MySQL
+- Sequelize ORM
+- JWT Authentication
+- dotenv
+- bcrypt
+- Postman (for testing)
 
 ---
 
 ## 📂 Project Structure
 
 ```
-src/
- ├── controllers/
- ├── models/
- ├── routes/
- ├── middleware/
- ├── services/
- ├── config/
- ├── app.js
- └── server.js
+backend
+│
+├─documentation
+│ ├── api.md
+│ ├── database.md
+│ └── project_structure.md
+│
+├─node_modules
+│
+├─src
+│ │
+│ ├──── config
+│ │ ├── database.js
+│ │ ├── cors.js
+│ │ └── env.js
+│ │
+│ ├── controllers
+│ │ ├── auth.controller.js
+│ │ ├── notification.controller.js
+│ │ ├── report.controller.js
+│ │ ├── task.controller.js
+│ │ ├── user.controller.js
+│ │ ├── volunteer.controller.js
+│ │ ├── project.controller.js
+│ │ └── task.controller.js
+│ │
+│ ├── models
+│ │ ├── user.js
+│ │ ├── Project.js
+│ │ ├── report.js
+│ │ ├── index.js
+│ │ ├── volunteer.js
+│ │ ├── Task.js
+│ │ └── notification.model.js
+│ │
+│ ├── routes
+│ │ ├── authRoutes.js
+│ │ ├── notificationRoutes.js
+│ │ ├── projectRoutes.js
+│ │ ├── reportRoutes.js
+│ │ ├── task Routes.js,
+│ │ ├── userRoutes.js
+│ │ └── volunteerRoutes.js
+│ │
+│ ├── middleware
+│ │ ├── auth.js
+│ │ ├── error.js
+│ │ └── role.js
+│ │
+│ ├── services
+│ │ ├── notification.service.js
+│ │ └── report.js
+│ │
+│ ├── utils
+│ └── generateTokens.js
+│
+├──.env
+├──.gitignore
+├──package-lock.json
+├── packake.json
+├── server.js
+└── README.md
+
 ```
 
 ---
@@ -194,16 +248,16 @@ Steps:
 
 ## 👨‍💻 Contributors
 
-* Backend Team
-* TechRush Group 4
+- Backend Dev. Team
+- TechCrush Group 4
 
 ---
 
 ## 📌 Notes
 
-* All protected routes require JWT token
-* Use Authorization → Bearer Token in Postman
-* Server must be running before testing
-* MySQL must be running
+- All protected routes require JWT token
+- Use Authorization → Bearer Token in Postman
+- Server must be running before testing
+- MySQL must be running
 
 ---
