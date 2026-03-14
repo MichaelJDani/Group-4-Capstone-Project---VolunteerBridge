@@ -3,31 +3,32 @@ const form = document.getElementById('admin-signup-form');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  // Use getElementById to read values correctly
   const formData = {
-    username: form.name.value,   // backend expects username
-    email: form.email.value,
-    password: form.password.value,
-    phone: form.phone.value,
-    address: form.address.value,
-    role: 'admin'               // mark as admin
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    password: document.getElementById('password').value,
+    phone_number: document.getElementById('phone_number').value,
+    address: document.getElementById('address').value,
+    role: 'admin'
   };
 
   try {
-    const res = await fetch('http://localhost:5000/api/register', { // backend URL
+    const res = await fetch('http://localhost:5000/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     });
 
+    
+
     const data = await res.json();
 
     if (res.ok) {
-      // ✅ Save JWT in localStorage
       localStorage.setItem('token', data.token);
+      alert('Admin account created successfully!');
 
-      alert('Account created successfully!');
-
-      // ✅ Redirect based on role
+      // Redirect based on role
       if (data.user.role === 'admin') {
         window.location.href = '/frontend/admin/admin-dashboard.html';
       } else {
