@@ -13,7 +13,7 @@ REGISTER USER
 const register = async (req, res) => {
     try {
 
-        const { name, email, password, role } = req.body;
+        const { name, email, password, phone_number, role } = req.body;
 
         if (!name || !email || !password) {
             return res.status(400).json({
@@ -30,9 +30,11 @@ const register = async (req, res) => {
         }
 
         const user = await User.create({
+
             name,
             email,
             password,
+            phone_number,
             role: role || "volunteer"
         });
 
