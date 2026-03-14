@@ -313,4 +313,153 @@ Body blank
 ]
 }
 
-## update Task
+## Assign Task
+
+# Api
+
+http://localhost:5000/api/tasks/1/assign
+
+# authorization input bearer token from volunteer
+
+body
+raw JSON
+
+# Request:
+
+{
+"userId":1
+
+}
+
+# Response
+
+{
+"success": true,
+"message": "Task assigned and notification created",
+"data": {
+"id": 1,
+"projectId": 1,
+"title": "Food Distribution to less privileged",
+"description": "Handle 5 bags",
+"dueDate": "2026-04-01T00:00:00.000Z",
+"estimatedHours": 5,
+"status": "pending",
+"createdBy": 5,
+"assignedTo": 1,
+"createdAt": "2026-03-13T20:59:47.000Z",
+"updatedAt": "2026-03-14T11:43:41.020Z",
+"project_id": 1
+}
+}
+
+## SEND REPORT
+
+# api
+
+http://localhost:5000/api/reports
+
+body
+raw JSON
+
+# request
+
+{
+"title": "Food Distribution to less privileged",
+"content": "five bags given to 125 people, names are listed on the excel sheet, will be sent via mail",
+"userId": "1",
+"projectId": 1,
+"taskId": "1"
+}
+
+# Response
+
+{
+"success": true,
+"data": {
+"status": "draft",
+"id": 1,
+"title": "Food Distribution to less privileged",
+"content": "five bags given to 125 people, names are listed on the excel sheet, will be sent via mail",
+"userId": 1,
+"projectId": 1,
+"taskId": "1",
+"updatedAt": "2026-03-14T11:59:59.128Z",
+"createdAt": "2026-03-14T11:59:59.128Z"
+}
+}
+
+## Get Report
+
+api
+GET
+http://localhost:5000/api/reports/user/1
+
+# Request
+
+Body
+raw JSON
+{
+"userId": "1"  
+}
+
+# Response
+
+{
+"success": true,
+"data": [
+{
+"id": 1,
+"userId": 1,
+"projectId": 1,
+"taskId": 1,
+"title": "Food Distribution to less privileged",
+"content": "five bags given to 125 people, names are listed on the excel sheet, will be sent via mail",
+"status": "draft",
+"createdAt": "2026-03-14T11:59:59.000Z",
+"updatedAt": "2026-03-14T11:59:59.000Z",
+"user_id": 1,
+"project_id": 1,
+"project": {
+"id": 1,
+"name": "Food Distribution to less privileged"
+}
+}
+]
+}
+
+## Get Project Report
+
+api
+http://localhost:5000/api/reports/project/1
+
+Request
+raw JSON
+{
+"projectId": "1"
+}
+
+# Response
+
+{
+"success": true,
+"data": [
+{
+"id": 1,
+"userId": 1,
+"projectId": 1,
+"taskId": 1,
+"title": "Food Distribution to less privileged",
+"content": "five bags given to 125 people, names are listed on the excel sheet, will be sent via mail",
+"status": "draft",
+"createdAt": "2026-03-14T11:59:59.000Z",
+"updatedAt": "2026-03-14T11:59:59.000Z",
+"user_id": 1,
+"project_id": 1,
+"reportsOwner": {
+"id": 1,
+"name": "John Hoe",
+"email": "johnhoe@example.com"
+}
+}
+]
+}
