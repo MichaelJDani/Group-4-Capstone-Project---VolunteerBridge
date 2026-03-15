@@ -68,6 +68,10 @@ h1{
     margin-bottom: 20px;
 }
 
+.notifications{
+    max-width: 75vw;
+}
+
 .notification.active{
     background-color: #1f7a8c;
     color: #f2f0f0;
