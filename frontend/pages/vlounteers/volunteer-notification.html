@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+    <link rel="stylesheet" href="/Group-4-Capstone-Project---VolunteerBridge/frontend/css/notification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="volunteer-notification.js"></script>
+  </head>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="menu-item">
+                <a href="volunteer-dashboard.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                </a>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="menu-item">
+                <a href="volunteer-project.html">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </a>
+                <span>Projects</span>
+            </div>
+
+            <div class="menu-item active notification-icon">
+                <a href="#">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+                <span class="badge" id="badgeCount">3</span>
+                <span>Notifications</span>
+            </div>
+
+            <div class="menu-item">
+                <a href="volunteer-profile.html">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </a>
+                <span>Projects</span>
+            </div>
+
+        </aside>
+
+        <main>
+            <h1>Notifications</h1>
+            <div class="notifications" id="notifications">
+                <div class="notification active">
+                Community outreach: A new task has been assigned to you – Design ten fliers...
+                </div>
+
+                <div class="notification active">
+                Event organisation: A new task has been assigned to you – Arrange chairs...
+                </div>
+
+                <div class="notification active">
+                Reminder: Create Cartoon for Awareness campaign is due tomorrow...
+                </div>
+
+                <div class="notification disabled">
+                Field outreach: A new task has been assigned to you – Design Slides for Field outreach
+                </div>
+
+                <div class="notification disabled">
+                Reminder: Facilitate Workshops is due tomorrow...
+                </div>
+            </div>
+
+            <button class="clearBtn">
+                Clear Notifications
+            </button>
+        </main>
+    </div>
+    
+    
+    
+</body>
+</html>
