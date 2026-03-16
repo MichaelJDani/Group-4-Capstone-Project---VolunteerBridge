@@ -19,7 +19,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = configuration.PORT || 5000;
+// const PORT = configuration.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middlewares
 app.use(cors(corsOptions));
@@ -70,7 +71,7 @@ app.use((req, res) => {
     await sequelize.sync({ alter: true });
     console.log("All tables synced successfully");
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server is running on port ${PORT}`);
     });
   } catch (error) {
