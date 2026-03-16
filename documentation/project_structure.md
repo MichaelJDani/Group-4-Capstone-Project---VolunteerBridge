@@ -16,6 +16,7 @@ backend
 │ │
 │ ├── controllers
 │ │ ├── auth.controller.js
+│ │ ├── donation.controller.js  
 │ │ ├── notification.controller.js
 │ │ ├── report.controller.js
 │ │ ├── user.controller.js
@@ -24,6 +25,7 @@ backend
 │ │ └── task.controller.js
 │ │
 │ ├── models
+│ │ ├── Donation.js
 │ │ ├── user.js
 │ │ ├── Project.js
 │ │ ├── report.js
@@ -34,6 +36,7 @@ backend
 │ │
 │ ├── routes
 │ │ ├── authRoutes.js
+│ │ ├── donationRoutes.js
 │ │ ├── notificationRoutes.js
 │ │ ├── projectRoutes.js
 │ │ ├── reportRoutes.js

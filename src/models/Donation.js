@@ -7,7 +7,12 @@ const Donation = sequelize.define("Donation", {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
-    paymentMethod: DataTypes.STRING,
+
+    paymentMethod: {
+        type: DataTypes.ENUM("card", "bank_transfer", "cash"),
+        allowNull: false,
+    },
+
     status: {
         type: DataTypes.ENUM("pending", "completed", "failed"),
         defaultValue: "pending",

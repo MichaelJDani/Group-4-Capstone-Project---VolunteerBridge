@@ -13,7 +13,10 @@ import reportRoutes from "./src/routes/reportRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import errorMiddleware from "./src/middleware/error.js";
 import { sequelize } from "./src/models/index.js"; // Sequelize instance with models
+import donationRoutes from "./src/routes/donationRoutes.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const app = express();
 const PORT = configuration.PORT || 5000;
@@ -41,7 +44,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/auth", authRoutes);
-
+app.use("/api/donations", donationRoutes);
 // Health check
 app.get("/health", async (req, res) => {
   try {

@@ -499,3 +499,62 @@ raw JSON
 "project_id": 1
 }
 }
+
+## create donation
+
+# Request
+
+body
+raw JSON
+
+{
+"report_id": 1,
+"amount": 5000,
+"paymentMethod": "bank_transfer",
+"status": "pending"
+}
+Response
+
+{
+"message": "Donation created successfully",
+"paymentInstruction": "Transfer to NGO Account: Bank: XYZ Bank, Account No: 1234567890",
+"donation": {
+"id": 1,
+"report_id": 1,
+"amount": 5000,
+"status": "pending",
+"paymentMethod": "bank_transfer",
+"updatedAt": "2026-03-15T18:03:21.456Z",
+"createdAt": "2026-03-15T18:03:21.456Z"
+}
+}
+
+## Create Donation Cash
+
+# request
+
+Body
+raw JSON
+
+{
+"report_id": 1,
+"amount": 5000,
+"paymentMethod": "cash",
+"status": "pending"
+}
+
+# Response
+
+{
+"message": "Donation created successfully",
+"paymentInstruction": "Pay cash directly to the NGO office.",
+"donation": {
+"id": 2,
+"report_id": 1,
+"amount": 5000,
+"status": "pending",
+"paymentMethod": "cash",
+"updatedAt": "2026-03-15T18:09:42.727Z",
+"createdAt": "2026-03-15T18:09:42.727Z"
+}
+}
