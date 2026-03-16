@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteer Bridge | Login</title>
+
+    <link rel="stylesheet" href="/frontend/css/colors.css" />
+    <link rel="stylesheet" href="/frontend/css/admin/admin-login.css" />
+    <script src="/frontend/javascript/volunteers/volunteer-login.js" defer></script>
+  </head>
+
+  <body>
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <!-- HERO SIDE -->
+
+         <div id="toast-container"></div>
+
+        <div class="hero-card">
+          <img
+            src="/frontend/assets/Welcome Screen Desktop.png"
+            alt="Volunteer Bridge"
+          />
+
+          <div class="hero-content">
+            <h1>Volunteer <span>Bridge</span></h1>
+
+            <p>Empowering communities better organization</p>
+          </div>
+        </div>
+
+        <!-- LOGIN SIDE -->
+
+        <div class="login-card">
+          <h2>Login</h2>
+
+          <form id="volunteer-login-form">
+            <div class="input-group">
+              <label>Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div class="input-group password-group">
+              <label>Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+              />
+              <span class="toggle-password">
+                <img src="/frontend/assets/icons/eye.svg" alt="Show password" />
+              </span>
+            </div>
+
+            <button type="submit" class="login-btn">Login</button>
+            <p id="error-message" style="color: red"></p>
+
+            <button type="button" class="google-btn">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
+                alt=""
+              />
+              Continue with Google
+            </button>
+
+            <p class="signup-text">
+              Don't have an account?
+              <a href="volunteer-signup.html">Sign up</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

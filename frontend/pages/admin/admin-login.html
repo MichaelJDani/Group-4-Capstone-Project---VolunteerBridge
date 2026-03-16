@@ -7,12 +7,15 @@
 
     <link rel="stylesheet" href="/frontend/css/colors.css" />
     <link rel="stylesheet" href="/frontend/css/admin/admin-login.css" />
+    <script src="/frontend/javascript/admin/admin-login.js" defer></script>
   </head>
 
   <body>
     <div class="auth-wrapper">
       <div class="auth-card">
         <!-- HERO SIDE -->
+
+         <div id="toast-container"></div>
 
         <div class="hero-card">
           <img
@@ -43,7 +46,7 @@
               />
             </div>
 
-            <div class="input-group">
+            <div class="input-group password-group">
               <label>Password</label>
               <input
                 type="password"
@@ -51,6 +54,9 @@
                 placeholder="Enter your password"
                 required
               />
+              <span class="toggle-password">
+                <img src="/frontend/assets/icons/eye.svg" alt="Show password" />
+              </span>
             </div>
 
             <button type="submit" class="login-btn">Login</button>

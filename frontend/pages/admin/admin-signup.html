@@ -6,13 +6,15 @@
     <title>Volunteer Bridge | Register</title>
     <link rel="stylesheet" href="/frontend/css/colors.css" />
     <link rel="stylesheet" href="/frontend/css/admin/admin-signup.css" />
-    <script src="/frontend/javascript/admin-signup.js" defer></script>
+    <script src="/frontend/javascript/admin/admin-signup.js" defer></script>
   </head>
 
   <body>
     <div class="auth-wrapper">
       <div class="auth-card">
         <!-- HERO SIDE -->
+
+         <div id="toast-container"></div>
 
         <div class="hero-card">
           <img
@@ -69,7 +71,7 @@
               />
             </div>
 
-            <div class="input-group">
+            <div class="input-group password-group">
               <label>Password</label>
               <input
                 type="password"
@@ -77,6 +79,10 @@
                 placeholder="Create your password"
                 required
               />
+              <span class="toggle-password"
+                ><img src="/frontend/assets/icons/eye.svg" alt="eyeicon"
+              /></span>
+
             </div>
 
             <button type="submit" class="login-btn">Create Account</button>

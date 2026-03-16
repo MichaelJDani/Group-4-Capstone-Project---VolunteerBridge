@@ -193,55 +193,6 @@ font-weight:600;
   height: 100%;
 }
 
-/* Toast container */
-#toast-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Toast message */
-.toast {
-  min-width: 250px;
-  padding: 12px 18px;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Show toast */
-.toast.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Types of toast */
-.toast.success {
-  background-color: #2a7c85; /* teal */
-}
-
-.toast.error {
-  background-color: #e74c3c; /* red */
-}
-
-/* Optional: close button */
-.toast .close-btn {
-  margin-left: 10px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
 /* MOBILE */
 @media(max-width:768px){
 
@@ -273,6 +224,70 @@ width:100%;
 width:100%;
 padding:25px;
 }
+
+
+.password-group {
+  position: relative;
+}
+
+.password-group .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 65%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 24px; 
+  height: 24px;
+}
+
+.password-group .toggle-password img {
+  width: 100%;
+  height: 100%;
+}
+
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  min-width: 200px;
+  background: #2a7c85;
+  color: #fff;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  transform: translateX(100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+  font-size: 14px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast.error {
+  background: #d9534f;
+}
+
+.toast.success {
+  background: #28a745;
+}
+
+.toast .close-btn {
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
 
 /* HERO TEXT */
 
