@@ -10,7 +10,7 @@ export const configuration = {
     DB_USER: process.env.DB_USER || 'volunte1_user',
     DB_PASSWORD: process.env.DB_PASSWORD || 'group4@techrush2026',
     DB_NAME: process.env.DB_NAME || 'volunte1_bridge',
-    DB_DIALECT: process.env.DB_DIALECT || 'mysql',
+    DB_DIALECT: process.env.DB_DIALECT || 'postgres',
     JWT_SECRET: process.env.JWT_SECRET || 'secret',
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',
     SALT_ROUNDS: process.env.SALT_ROUNDS || 10,
