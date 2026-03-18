@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/frontend/css/colors.css">
+    <link rel="stylesheet" href="/frontend/css/admin/admin-project-menu.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar / Bottom Nav -->
+      <aside>
+        <div class="menu-item">
+          <a href="volunteer-dashboard.html">
+            <i class="fa-solid fa-chart-column"></i>
+          </a>
+          <span>Dashboard</span>
+        </div>
+
+        <div class="menu-item active">
+          <a href="volunteer-project.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </a>
+          <span>Projects</span>
+        </div>
+
+        <div class="menu-item">
+          <a href="volunteer.html">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </a>
+          <span>Volunteers</span>
+        </div>
+
+        <div class="menu-item">
+          <a href="volunteer-report.html">
+             <img src="/frontend/assets/icons/eos-icons_project.png" alt=""></img>
+
+          </a>
+          <span>Reports</span>
+        </div>
+
+        <div class="menu-item notification-icon">
+          <a href="#">
+            <i class="fa-solid fa-bell"></i>
+          </a>
+          <span>Notifications</span>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Header: title left, search right -->
+       <!-- Search on top -->
+<div class="search-row">
+  <div class="search-container">
+    <input type="text" placeholder="Search projects..." id="projectSearch"/>
+    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+  </div>
+</div>
+
+<!-- Title below search -->
+<h1 class="project-h1">Projects</h1>
+
+        <!-- Projects + Right actions -->
+        <div class="projects-actions">
+          <!-- Left: Projects List -->
+          <div class="projects-container" id="projectsContainer">
+            <!-- Dynamic project cards will appear here -->
+          </div>
+
+          <!-- Right: Actions Stack -->
+          <div class="actions-stack">
+            <button id="moreBtn">More <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="clearBtn">Create Project</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="/frontend/js/admin/admin-project-menu.js"></script>
+  </body>
+</html>

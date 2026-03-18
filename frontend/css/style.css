@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-image: url("../assets/Welcome\ Screen\ Desktop.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hero-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+
+
+.text-content {
+  margin-bottom: 330px;
+  line-height: 0.9;
+  transform: translateY(40px);
+  animation: logoIntro 2.0s ease forwards;
+  transition: transform 0.2s ease;
+}
+
+@keyframes logoIntro {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text-content h1,
+.text-content p {
+  line-height: 1.2;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.title span {
+  color: var(--deep-teal);
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+  padding: 1rem;
+  margin-top: 45px;
+  transform: translateY(30px);
+  animation: logoIntro 1.5s ease forwards;
+  transition: transform 0.3s ease;
+}
+
+.btn {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  padding: 14px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  transition: 0.3s;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.primary {
+  background: var(--deep-teal);
+  color: var(--neutral-light);
+}
+
+.primary:hover {
+  background-color: var(--deep-teal-dark-hover);
+}
+
+.secondary {
+  border: var(--neutral-light) 2px solid;
+  color: var(--neutral-light);
+}
+
+.secondary:hover {
+  background: var(--neutral-light);
+  color: var(--neutral-dark);
+}
+
+@media (max-width: 761px) {
+  .hero {
+    background-image: url("../assets/Welcome\ Screen\ Mobile.png");
+  }
+
+  .title {
+    font-size: 40px;
+  }
+  .text-content {
+    margin-bottom: 175px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 90px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    
+  }
+}

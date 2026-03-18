@@ -1,0 +1,16 @@
+:root {
+  /* Core Palette */
+  --deep-teal: #1F7A8C;      /* Deep Teal - Trust + stability */
+  --deep-teal-dark-hover: #0e5563; /* Darker shade for hover */
+  --warm-coral: #FF6B6B;    /* Warm Coral - Humanity + urgency */
+  --golden-amber: #F4B942;       /* Golden Amber - Hope + positivity */
+
+  --neutral-dark: #2F2F2F; /* Charcoal - Text */
+  --neutral-light: #F7F7F7; /* Soft Gray - Background */
+
+  /* Support Colors */
+  --success: #3BB273;  /* Fresh Green */
+  --warning: #F2994A;  /* Orange */
+  --error: #EB5757;    /* Red */
+  --info: #56CCF2;     /* Sky Blue */
+}

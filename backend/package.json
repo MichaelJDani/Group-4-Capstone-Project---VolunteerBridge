@@ -1,0 +1,44 @@
+{
+  "name": "volunteerbridge",
+  "version": "1.0.0",
+  "description": "Volunteer/ngo management system software",
+  "keywords": [
+    "management-software"
+  ],
+  "homepage": "https://github.com/oladele-sunday/Volunteer-Bridge#readme",
+  "bugs": {
+    "url": "https://github.com/oladele-sunday/Volunteer-Bridge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oladele-sunday/Volunteer-Bridge.git"
+  },
+  "license": "ISC",
+  "author": "Group-4-Capstone TC Project",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.1.1",
+    "mysql2": "^3.19.1",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "sequelize-cli": "^6.6.5"
+  }
+}
