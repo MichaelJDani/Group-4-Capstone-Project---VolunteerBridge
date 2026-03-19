@@ -1,107 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Task</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Task</title>
 
-<link rel="stylesheet" href="/frontend/css/admin/create-task.css">
+    <link rel="stylesheet" href="/frontend/css/admin/create-task.css" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="/frontend/javascript/create-task.js"></script>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="/frontend/javascript/create-task.js"></script>
+  </head>
 
-<body>
+  <body>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div class="menu-item">
+          <i class="fa-solid fa-chart-column"></i>
+          <span>Dashboard</span>
+        </div>
 
-<div class="dashboard-container">
+        <div class="menu-item">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <span>Projects</span>
+        </div>
 
+        <div class="menu-item">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <span>Volunteers</span>
+        </div>
 
-<aside class="sidebar">
+        <div class="menu-item">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Reports</span>
+        </div>
 
-<div class="menu-item">
-<i class="fa-solid fa-chart-simple"></i>
-<span>Dashboard</span>
-</div>
+        <div class="menu-item">
+          <i class="fa-solid fa-bell"></i>
+          <span>Notifications</span>
+        </div>
+      </aside>
 
-<div class="menu-item">
-<i class="fa-solid fa-screwdriver-wrench"></i>
-<span>Projects</span>
-</div>
+      <main class="main-content">
+        <h1 class="page-title">Create Task</h1>
 
-<div class="menu-item">
-<i class="fa-solid fa-hand-holding-heart"></i>
-<span>Volunteers</span>
-</div>
+        <form id="createTaskForm">
+          <div class="form-group">
+            <label>Task Title</label>
+            <input
+              type="text"
+              id="taskTitle"
+              placeholder="Task Title"
+              required
+            />
+          </div>
 
-<div class="menu-item">
-<i class="fa-solid fa-chart-line"></i>
-<span>Reports</span>
-</div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="description" placeholder="Description"></textarea>
+          </div>
 
-<div class="menu-item">
-<i class="fa-solid fa-bell"></i>
-<span>Notifications</span>
-</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Due Date</label>
+              <input type="date" id="dueDate" />
+            </div>
 
-</aside>
+            <div class="form-group">
+              <label>Estimated Hours</label>
+              <input type="number" id="hours" placeholder="0 Hours" min="1" />
+            </div>
+          </div>
 
+          <div class="assign-section">
+            <button type="button" class="assign-btn">
+              <i class="fa-solid fa-plus"></i>
+              Assign Volunteers
+            </button>
 
-<main class="main-content">
+            <span class="volunteer-count">0 Volunteers</span>
+          </div>
 
-<h1 class="page-title">Create Task</h1>
-
-<form id="createTaskForm">
-
-
-<div class="form-group">
-<label>Task Title</label>
-<input type="text" id="taskTitle" placeholder="Task Title" required>
-</div>
-
-
-<div class="form-group">
-<label>Description</label>
-<textarea id="description" placeholder="Description"></textarea>
-</div>
-
-
-<div class="form-row">
-
-<div class="form-group">
-<label>Due Date</label>
-<input type="date" id="dueDate">
-</div>
-
-<div class="form-group">
-<label>Estimated Hours</label>
-<input type="number" id="hours" placeholder="0 Hours" min="1">
-</div>
-
-</div>
-
-
-<div class="assign-section">
-
-<button type="button" class="assign-btn">
-<i class="fa-solid fa-plus"></i>
-Assign Volunteers
-</button>
-
-<span class="volunteer-count">0 Volunteers</span>
-
-</div>
-
-
-<div class="submit-section">
-<button type="submit" class="submit-btn">Submit</button>
-</div>
-
-</form>
-
-</main>
-
-</div>
-
-
-</body>
+          <div class="submit-section">
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
 </html>

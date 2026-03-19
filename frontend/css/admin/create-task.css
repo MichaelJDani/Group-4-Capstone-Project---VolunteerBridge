@@ -14,7 +14,7 @@ display:flex;
 height:100vh;
 }
 
-/* SIDEBAR */
+
 
 .sidebar{
 width:90px;
@@ -59,7 +59,7 @@ cursor:pointer;
 transition: background-color 0.5s ease;
 }
 
-/* MAIN CONTENT */
+
 
 .main-content{
 flex:1;
@@ -72,13 +72,13 @@ color:#2b7a84;
 margin-bottom:35px;
 }
 
-/* FORM */
+
 
 #createTaskForm{
 width:100%;
 }
 
-/* FORM GROUP */
+
 
 .form-group{
 display:flex;
@@ -93,7 +93,7 @@ margin-bottom:8px;
 color:#333;
 }
 
-/* INPUTS */
+
 
 input,
 textarea{
@@ -111,7 +111,7 @@ height:220px;
 resize:none;
 }
 
-/* FORM ROW */
+
 
 .form-row{
 display:flex;
@@ -123,7 +123,7 @@ margin-bottom:25px;
 flex:1;
 }
 
-/* ASSIGN VOLUNTEERS */
+
 
 .assign-section{
 display:flex;
@@ -145,7 +145,7 @@ gap:8px;
 }
 
 .assign-btn:hover{
-background-color:#2b7a84;
+background-color:#0e5563;
 cursor:pointer;
 transition: background-color 0.5s ease;
 }
@@ -156,7 +156,7 @@ font-size:15px;
 color:#555;
 }
 
-/* SUBMIT BUTTON */
+
 
 .submit-section{
 display:flex;
@@ -174,13 +174,13 @@ border-radius:10px;
 cursor:pointer;
 }
 
-/* HOVER EFFECT */
+
 
 .submit-btn:hover{
-background:#236770;
+background:#0e5563;
 }
 
-/* RESPONSIVE */
+
 
 @media(max-width:900px){
 
@@ -197,3 +197,4 @@ justify-content:center;
 }
 
 }
+
