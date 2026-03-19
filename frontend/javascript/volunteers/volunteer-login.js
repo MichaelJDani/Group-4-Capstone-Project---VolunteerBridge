@@ -1,57 +1,47 @@
-// --- BASE URL (live backend) ---
-const BASE_URL = "https://volunteer-bridge.com.ng/api";
+// --- BASE URL (auto-switch between localhost and hosted backend) ---
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:5000/api"
+  : "https://volunteer-bridge.com.ng/api";
 
+// --- PASSWORD TOGGLE ---
 document.addEventListener("DOMContentLoaded", () => {
-  // --- PASSWORD TOGGLE ---
   const passwordInput = document.getElementById("password");
   const togglePassword = document.querySelector(".toggle-password");
-  const eyeIcon = togglePassword.querySelector("img");
+  const eyeIcon = togglePassword?.querySelector("img");
 
-  togglePassword.addEventListener("click", () => {
+  togglePassword?.addEventListener("click", () => {
     const type = passwordInput.type === "password" ? "text" : "password";
     passwordInput.type = type;
-    eyeIcon.src =
-      type === "password"
-        ? "/frontend/assets/icons/eye.svg"
-        : "/frontend/assets/icons/eye-slash.svg";
+    eyeIcon.src = type === "password"
+      ? "/frontend/assets/icons/eye.svg"
+      : "/frontend/assets/icons/eye-slash.svg";
   });
 
   // --- TOAST FUNCTION ---
-  function showToast(message, type = "success", duration = 3000) {
-    const container = document.getElementById("toast-container");
+  function showToast(message, type = 'success', duration = 3000) {
+    const container = document.getElementById('toast-container');
     if (!container) return;
 
-    const toast = document.createElement("div");
-    toast.classList.add("toast", type);
+    const toast = document.createElement('div');
+    toast.classList.add('toast', type);
     toast.innerHTML = `
       <span>${message}</span>
       <span class="close-btn">&times;</span>
     `;
     container.appendChild(toast);
 
-    setTimeout(() => toast.classList.add("show"), 50);
+    setTimeout(() => toast.classList.add('show'), 50);
 
     const hideTimeout = setTimeout(() => {
-      toast.classList.remove("show");
+      toast.classList.remove('show');
       setTimeout(() => toast.remove(), 400);
     }, duration);
 
-    toast.querySelector(".close-btn").addEventListener("click", () => {
+    toast.querySelector('.close-btn').addEventListener('click', () => {
       clearTimeout(hideTimeout);
-      toast.classList.remove("show");
+      toast.classList.remove('show');
       setTimeout(() => toast.remove(), 400);
     });
-  }
-
-  // --- HELPER FUNCTION FOR API CALLS WITH JWT ---
-  async function apiFetch(endpoint, options = {}) {
-    const token = localStorage.getItem("token");
-    const headers = {
-      "Content-Type": "application/json",
-      ...(token && { Authorization: `Bearer ${token}` })
-    };
-    const res = await fetch(`${BASE_URL}${endpoint}`, { ...options, headers });
-    return res.json();
   }
 
   // --- LOGIN FORM SUBMISSION ---
@@ -59,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page refresh
 
     const email = document.getElementById("email").value.trim();
     const password = passwordInput.value;
@@ -79,10 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
+        if (data.token) localStorage.setItem("token", data.token);
         showToast("Login successful!", "success", 3000);
 
-        // Redirect based on role after toast shows
         setTimeout(() => {
           const role = data.user.role;
           if (role === "volunteer") {

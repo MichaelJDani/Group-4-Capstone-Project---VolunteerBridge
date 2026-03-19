@@ -1,19 +1,20 @@
-// --- BASE URL (live backend) ---
-const BASE_URL = "https://volunteer-bridge.com.ng/api";
+// --- BASE URL (auto-switch localhost vs hosted backend) ---
+const BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:5000/api"
+  : "https://volunteer-bridge.com.ng/api";
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- PASSWORD TOGGLE ---
   const passwordInput = document.getElementById("password");
   const togglePassword = document.querySelector(".toggle-password");
-  const eyeIcon = togglePassword.querySelector("img");
+  const eyeIcon = togglePassword?.querySelector("img");
 
-  togglePassword.addEventListener("click", () => {
+  togglePassword?.addEventListener("click", () => {
     const type = passwordInput.type === "password" ? "text" : "password";
     passwordInput.type = type;
-    eyeIcon.src =
-      type === "password"
-        ? "/frontend/assets/icons/eye.svg"
-        : "/frontend/assets/icons/eye-slash.svg";
+    eyeIcon.src = type === "password"
+      ? "/frontend/assets/icons/eye.svg"
+      : "/frontend/assets/icons/eye-slash.svg";
   });
 
   // --- TOAST FUNCTION ---
@@ -43,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
-
   // --- HELPER FUNCTION FOR API CALLS WITH JWT ---
   async function apiFetch(endpoint, options = {}) {
     const token = localStorage.getItem("token");
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page refresh
 
     const formData = {
       name: document.getElementById("name").value.trim(),
@@ -72,14 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
       role: "volunteer",
     };
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.password) {
       showToast("Please fill in all required fields", "error", 4000);
       return;
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/auth/signup`, { // <-- live backend
+      const res = await fetch(`${BASE_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -88,15 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (res.ok) {
-        // Store JWT if backend returns one
         if (data.token) localStorage.setItem("token", data.token);
-
         showToast("Volunteer account created successfully!", "success", 3000);
 
-        // Redirect to volunteer dashboard or login
         setTimeout(() => {
           window.location.href = "./volunteer-dashboard.html";
         }, 1200);
+
       } else {
         showToast(data.message || "Failed to create account!", "error", 5000);
       }

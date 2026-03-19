@@ -1,3 +1,7 @@
+// --- BASE URL: switch between localhost and hosted backend ---
+const BASE_URL = "https://volunteer-bridge.com.ng/api"; 
+// For local testing, you can change to: "http://localhost:5000/api"
+
 const adminNameEl = document.getElementById('admin-name');
 const logoutBtn = document.getElementById('logout-btn');
 
@@ -8,8 +12,8 @@ if (!token) {
   // Not logged in
   window.location.href = '/frontend/admin/admin-login.html';
 } else {
-  // Verify token with backend (optional, but recommended)
-  fetch('http://localhost:5000/api/auth/me', {
+  // Verify token with backend
+  fetch(`${BASE_URL}/auth/me`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
