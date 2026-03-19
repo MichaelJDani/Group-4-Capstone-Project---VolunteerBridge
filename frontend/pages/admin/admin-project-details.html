@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Admin Dashboard/title>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+        <li><a href="#"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+        <li><a href="#"><i class="fa-solid fa-users"></i> Volunteers</a></li>
+        <li><a href="#"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
+        <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Project Overview -->
+    <section class="project-overview">
+        <div class="project-info">
+            <h2 id="project-name">Project Name</h2>
+            <p>Project Name:</p>
+        <p id="project-desc">Project description will appear here.</p>
+      </div>
+        
+
+      <!-- Project Meta -->
+      <div class="project-meta">
+        <p><strong>Due Date:</strong> <span id="project-due">--</span></p>
+        <p><strong>Estimated Hours:</strong> <span id="project-hours">--</span></p>
+        <p><strong>Status:</strong> <span id="project-status">--</span></p>
+      </div>
+    </section>
+
+    <!-- Task List -->
+    <section class="task-list-section">
+      <div class="task-list-wrapper">
+        <h3>Task List</h3>
+        <ul id="tasks-container">
+          <!-- Tasks will be dynamically inserted here -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- Project Actions -->
+    <section class="project-actions">
+      <button class="btn-create-task">Create Task</button>
+      <button class="btn-edit-project">Edit Project</button>
+      <button class="btn-edit-project">Edit Task</button>
+      <a href="/frontend/pages/vlounteers/view-volunteers.html" class="btn-view-volunteers">View Volunteers</a>
+    </section>
+
+    <!-- Task History -->
+    <section class="task-history">
+      <h3>Task history</h3>
+      <ul id="task-history-container">
+        <!-- Completed tasks will be dynamically inserted here -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="/frontend/javascript/admin/admin-project-details.js"></script>
+</body>
+</html>
