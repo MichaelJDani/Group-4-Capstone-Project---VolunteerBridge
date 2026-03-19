@@ -47,7 +47,7 @@
                 <div class="content-wrapper">
                     <div class="left-panel">
                         <section class="filters">
-                            <select id="filter-select">
+                            <select id="filter-select" onchange="applyFilters()">
                                 <option value="">Filter by Project</option>
                                 <option value="community-clean-up">Community Clean-Up</option>
                                 <option value="food-drive">Food Drive</option>
@@ -60,20 +60,20 @@
                                 <div class="date-row">
                                     <div class="date-group">
                                         <label for="startDate">Start Date</label>
-                                        <input type="date" id="startDate" />
+                                        <input type="date" id="startDate" onchange="applyFilters()" />
                                     </div>
 
                                     <div class="date-group">
                                         <label for="endDate">End Date</label>
-                                        <input type="date" id="endDate" />
+                                        <input type="date" id="endDate" onchange="applyFilters()"/>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
                         <div class="export-buttons">
-                            <button class="btn-csv">Export to CSV</button>
-                            <button class="btn-pdf">Export to PDF</button>
+                            <button class="btn-csv" onclick="exportCSV()">Export to CSV</button>
+                            <button class="btn-pdf" onclick="exportCSV()">Export to PDF</button>
                         </div>
                     </div>
 
@@ -200,7 +200,7 @@
                             </div>
                         </section>
 
-                        <button class="more-button">More &#8594;</button>
+                        <button class="more-button" onclick="loadMore()">More &#8594;</button>
 
                     </div>
                 </div>
