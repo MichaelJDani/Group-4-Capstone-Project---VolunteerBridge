@@ -17,6 +17,7 @@ let filteredVolunteers = [...volunteers];
 function renderVolunteers(data, count) {
 
     const list = document.querySelector('.volunteers-list');
+    if (!list) return;
 
     list.innerHTML = '';
 
@@ -150,5 +151,42 @@ function exportPDF() {
 }
 
 
-// initialize the page
-renderVolunteers(filteredVolunteers, currentCount);
+// ===== FETCH REAL VOLUNTEERS =====
+async function fetchVolunteers() {
+  try {
+    const response = await fetch(
+      'https://volunteer-bridge-3.onrender.com/api/volunteers',
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3Mzk1NTg3NywiZXhwIjoxNzc2NTQ3ODc3fQ.V-7sSGxPR3lwM12uPcBMQmuT6JVw409yrmMmq4dnJYk',
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    if (data && data.length > 0) {
+      filteredVolunteers = data.map((v, index) => {
+        return {
+          name: volunteers[index] ? volunteers[index].name : `Volunteer ${v.userId}`,
+          tasks: volunteers[index] ? volunteers[index].tasks : 0,
+          hours: volunteers[index] ? volunteers[index].hours : 0,
+          projects: volunteers[index] ? volunteers[index].projects : 0,
+          project: volunteers[index] ? volunteers[index].project : "community-clean-up",
+          date: volunteers[index] ? volunteers[index].date : "2026-01-15"
+        };
+      });
+    }
+
+    renderVolunteers(filteredVolunteers, currentCount);
+
+  } catch (error) {
+    console.error('API Error:', error);
+    renderVolunteers(filteredVolunteers, currentCount);
+  }
+}
+
+// ===== INITIALIZE =====
+fetchVolunteers();
