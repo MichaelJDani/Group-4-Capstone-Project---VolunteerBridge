@@ -1,6 +1,6 @@
 ## 🗄️ Database Setup
 
-Open MySQL Workbench and run:
+Open PostgeSQL and run:
 
 ```
 CREATE DATABASE IF NOT EXISTS `volunteer-bridge`;
