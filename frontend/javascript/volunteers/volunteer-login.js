@@ -1,7 +1,5 @@
 // --- BASE URL (auto-switch between localhost and hosted backend) ---
-const BASE_URL = window.location.hostname === "localhost"
-  ? "http://localhost:5000/api"
-  : "https://volunteer-bridge.com.ng/api";
+const BASE_URL = "https://volunteer-bridge-3.onrender.com/api";
 
 // --- PASSWORD TOGGLE ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,34 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
   togglePassword?.addEventListener("click", () => {
     const type = passwordInput.type === "password" ? "text" : "password";
     passwordInput.type = type;
-    eyeIcon.src = type === "password"
-      ? "/frontend/assets/icons/eye.svg"
-      : "/frontend/assets/icons/eye-slash.svg";
+    eyeIcon.src =
+      type === "password"
+        ? "/frontend/assets/icons/eye.svg"
+        : "/frontend/assets/icons/eye-slash.svg";
   });
 
   // --- TOAST FUNCTION ---
-  function showToast(message, type = 'success', duration = 3000) {
-    const container = document.getElementById('toast-container');
+  function showToast(message, type = "success", duration = 3000) {
+    const container = document.getElementById("toast-container");
     if (!container) return;
 
-    const toast = document.createElement('div');
-    toast.classList.add('toast', type);
+    const toast = document.createElement("div");
+    toast.classList.add("toast", type);
     toast.innerHTML = `
       <span>${message}</span>
       <span class="close-btn">&times;</span>
     `;
     container.appendChild(toast);
 
-    setTimeout(() => toast.classList.add('show'), 50);
+    setTimeout(() => toast.classList.add("show"), 50);
 
     const hideTimeout = setTimeout(() => {
-      toast.classList.remove('show');
+      toast.classList.remove("show");
       setTimeout(() => toast.remove(), 400);
     }, duration);
 
-    toast.querySelector('.close-btn').addEventListener('click', () => {
+    toast.querySelector(".close-btn").addEventListener("click", () => {
       clearTimeout(hideTimeout);
-      toast.classList.remove('show');
+      toast.classList.remove("show");
       setTimeout(() => toast.remove(), 400);
     });
   }
@@ -47,6 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- LOGIN FORM SUBMISSION ---
   const form = document.getElementById("volunteer-login-form");
   if (!form) return;
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.textContent = isLoading ? "Logging in..." : "Login";
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // Prevent page refresh
@@ -59,11 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    setLoading(true);
+
     try {
       const res = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
@@ -82,14 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "./index.html";
           }
         }, 1200);
-
       } else {
         showToast(data.message || "Login failed", "error", 5000);
+        setLoading(false);
       }
-
     } catch (err) {
       console.error(err);
       showToast("Cannot connect to backend", "error", 5000);
+      setLoading(false);
     }
   });
 });

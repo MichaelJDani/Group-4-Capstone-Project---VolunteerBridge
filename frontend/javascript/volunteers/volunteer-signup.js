@@ -1,7 +1,5 @@
 // --- BASE URL (auto-switch localhost vs hosted backend) ---
-const BASE_URL = window.location.hostname === "localhost"
-  ? "http://localhost:5000/api"
-  : "https://volunteer-bridge.com.ng/api";
+const BASE_URL = "https://volunteer-bridge-3.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- PASSWORD TOGGLE ---
@@ -12,9 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   togglePassword?.addEventListener("click", () => {
     const type = passwordInput.type === "password" ? "text" : "password";
     passwordInput.type = type;
-    eyeIcon.src = type === "password"
-      ? "/frontend/assets/icons/eye.svg"
-      : "/frontend/assets/icons/eye-slash.svg";
+    eyeIcon.src =
+      type === "password"
+        ? "/frontend/assets/icons/eye.svg"
+        : "/frontend/assets/icons/eye-slash.svg";
   });
 
   // --- TOAST FUNCTION ---
@@ -59,6 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("volunteer-signup-form");
   if (!form) return;
 
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.textContent = isLoading
+      ? "Creating account..."
+      : "Create Account";
+  }
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // Prevent page refresh
 
@@ -66,9 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
       name: document.getElementById("name").value.trim(),
       email: document.getElementById("email").value.trim(),
       password: passwordInput.value,
-      phone_number: document.getElementById("phone_number").value.trim(),
-      skills: document.getElementById("skills").value.trim(),
-      role: "volunteer",
+      // phone_number: document.getElementById("phone_number").value.trim(),
+      // skills: document.getElementById("skills").value.trim(),
+      // role: "volunteer",
     };
 
     if (!formData.name || !formData.email || !formData.password) {
@@ -76,8 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    setLoading(true);
+
     try {
-      const res = await fetch(`${BASE_URL}/auth/signup`, {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -86,19 +96,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (res.ok) {
-        if (data.token) localStorage.setItem("token", data.token);
         showToast("Volunteer account created successfully!", "success", 3000);
 
         setTimeout(() => {
-          window.location.href = "./volunteer-dashboard.html";
+          window.location.href = "./volunteer-login.html";
         }, 1200);
-
       } else {
         showToast(data.message || "Failed to create account!", "error", 5000);
+        setLoading(false);
       }
     } catch (err) {
       console.error(err);
       showToast("Cannot connect to backend!", "error", 5000);
+      setLoading(false);
     }
   });
 });
