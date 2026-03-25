@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #fff;
+
+}
+
+div.container {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    min-height: 100vh;
+    gap: 20px;
+}
+
+aside{
+    display:flex;
+    flex-direction: column;
+    padding-top: 130px;
+    align-items: center;
+    gap: 35px;
+}
+
+.menu-item{
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.menu-item a{
+    text-decoration: none;
+}
+
+.menu-item i {
+    display: block;
+    color: black;
+    font-size: 20px;
+}
+
+.menu-item span{
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.menu-item .active-link{
+    color: #1f7a8c;
+}
+
+.badge{
+    position: absolute;
+    background: #ff6b6b;
+    top: -15px;
+    right: 15px;
+    font-size: 20px;
+    color: #181818;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+main{
+    padding: 40px 60px;
+}
+
+.logo{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 31px;
+}
+.logo span{
+    color: #1f7a8c;
+}
+
+h1{
+    color: #1f7a8c;
+    margin-bottom: 33px;
+}
+
+.task-details-container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.task-header{
+    font-weight: 700;
+}
+
+ .back {
+    margin-top: 20px;
+    cursor: pointer;
+    color: #0a7c7c;
+}
