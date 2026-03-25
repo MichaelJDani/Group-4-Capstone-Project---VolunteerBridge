@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Inter",sans-serif ;
+    color: #2F2F2F;
+    font-weight: 600;
+}
+.body-container{
+    display: flex;
+    margin-top: 50px;
+    gap: 50px;
+}
+.aside{
+    display: flex;
+    flex-direction: column;
+     gap: 20px;
+    margin-top: 80px;
+    margin-left: 70px;
+}
+.aside-a{
+    text-align: center;
+    font-size: 10px;
+}
+.Create-project-h1{
+     color: #1F7A8C;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}
+.input-1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+#project-name{
+    width: 953px;
+    height: 49px;
+    border:1px solid #f2f2f2;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: sans-serif;
+}
+.input-2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+#description{
+    width: 953px;
+    height: 226px;
+border:1px solid #f2f2f2;
+border-radius: 5px;
+padding: 10px;
+font-family: sans-serif;}
+.date-section{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+.submit-button button{
+    background-color: #1F7A8C;
+    color: #f2f2f2;
+    padding: 7px;
+    border: 1px solid #1F7A8C;
+    border-radius: 5px;
+    margin-left: 900px;
+    margin-top: 10px;
+    font-size: 10px;
+}
