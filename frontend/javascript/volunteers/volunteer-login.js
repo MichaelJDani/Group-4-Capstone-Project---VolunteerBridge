@@ -1,9 +1,5 @@
-// --- BASE URL (auto-switch between localhost and hosted backend) ---
-const BASE_URL = window.location.hostname === "localhost"
-  ? "http://localhost:5000/api"
-  : "https://volunteer-bridge.com.ng/api";
+const BASE_URL = "https://volunteer-bridge-3.onrender.com/api";
 
-// --- PASSWORD TOGGLE ---
 document.addEventListener("DOMContentLoaded", () => {
   const passwordInput = document.getElementById("password");
   const togglePassword = document.querySelector(".toggle-password");
@@ -17,21 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
       : "/frontend/assets/icons/eye-slash.svg";
   });
 
-  // --- TOAST FUNCTION ---
   function showToast(message, type = 'success', duration = 3000) {
     const container = document.getElementById('toast-container');
     if (!container) return;
 
     const toast = document.createElement('div');
     toast.classList.add('toast', type);
-    toast.innerHTML = `
-      <span>${message}</span>
-      <span class="close-btn">&times;</span>
-    `;
+    toast.innerHTML = `<span>${message}</span><span class="close-btn">&times;</span>`;
     container.appendChild(toast);
 
     setTimeout(() => toast.classList.add('show'), 50);
-
     const hideTimeout = setTimeout(() => {
       toast.classList.remove('show');
       setTimeout(() => toast.remove(), 400);
@@ -44,12 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- LOGIN FORM SUBMISSION ---
+
   const form = document.getElementById("volunteer-login-form");
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Prevent page refresh
+    e.preventDefault();
 
     const email = document.getElementById("email").value.trim();
     const password = passwordInput.value;
@@ -68,25 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
 
-      if (res.ok) {
-        if (data.token) localStorage.setItem("token", data.token);
+      if (res.ok && data.token) {
+        localStorage.setItem("token", data.token);
         showToast("Login successful!", "success", 3000);
 
         setTimeout(() => {
-          const role = data.user.role;
-          if (role === "volunteer") {
-            window.location.href = "./volunteer-dashboard.html";
-          } else if (role === "admin") {
-            window.location.href = "./admin-dashboard.html";
-          } else {
-            window.location.href = "./index.html";
-          }
+          if (data.user.role === "volunteer") window.location.href = "./volunteer-dashboard.html";
+          else if (data.user.role === "admin") window.location.href = "./admin-dashboard.html";
         }, 1200);
-
       } else {
         showToast(data.message || "Login failed", "error", 5000);
       }
-
     } catch (err) {
       console.error(err);
       showToast("Cannot connect to backend", "error", 5000);
