@@ -1,4 +1,4 @@
-// create-project.js
+// create-projects.js
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -15,59 +15,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchVolunteer");
     const volunteerListContainer = document.getElementById("volunteerListContainer");
     
-    // API Configuration
-    const BASE_URL = "https://volunteer-bridge-3.onrender.com";
-    const token = localStorage.getItem("token");
+    // Dummy volunteer data
+    const dummyVolunteers = [
+        { id: 1, name: "Emeka Okafor", role: "Graphic Designer" },
+        { id: 2, name: "Victory Clement", role: "Content Creator" },
+        { id: 3, name: "Ngozi Emeka", role: "Human Right Activist" },
+        { id: 4, name: "Hassan Daniel", role: "Computer Engineer" },
+        { id: 5, name: "Bosede Akinola", role: "Teacher & Child growth enthusiast" }
+    ];
     
     // Data storage
-    let allVolunteers = [];           // All volunteers from API
-    let selectedVolunteers = [];      // IDs of selected volunteers
+    let allVolunteers = [];
+    let selectedVolunteers = [];
     
     // -------------------------
-    // LOAD VOLUNTEERS (API-ready with dummy fallback)
+    // LOAD VOLUNTEERS (DUMMY DATA)
     // -------------------------
-    async function loadVolunteers() {
-        try {
-            // Try to fetch from API
-            const response = await fetch(`${BASE_URL}/api/volunteers`, {
-                headers: {
-                    "Authorization": token ? `Bearer ${token}` : ""
-                }
-            });
-            
-            if (response.ok) {
-                const data = await response.json();
-                // Handle different response structures
-                let volunteers = Array.isArray(data) ? data : (data.data || data.volunteers || []);
-                
-                if (volunteers.length > 0) {
-                    return volunteers;
-                }
-            }
-            
-            // Fallback to dummy data if API fails or returns empty
-            console.log("Using dummy volunteer data");
-            return [
-                { id: 1, name: "Emeka Okafor", role: "Graphic Designer" },
-                { id: 2, name: "Victory Clement", role: "Content Creator" },
-                { id: 3, name: "Ngozi Emeka", role: "Human Right Activist" },
-                { id: 4, name: "Hassan Daniel", role: "Computer Engineer" },
-                // cspell: disable-next-line
-                { id: 5, name: "Bosede Akinola", role: "Teacher & Child growth enthusiast" }
-            ];
-            
-        } catch (error) {
-            console.error("Error loading volunteers:", error);
-            // Return dummy data on error
-            return [
-                { id: 1, name: "Emeka Okafor", role: "Graphic Designer" },
-                { id: 2, name: "Victory Clement", role: "Content Creator" },
-                { id: 3, name: "Ngozi Emeka", role: "Human Right Activist" },
-                { id: 4, name: "Hassan Daniel", role: "Computer Engineer" },
-                // cspell: disable-next-line
-                { id: 5, name: "Bosede Akinola", role: "Teacher & Child growth enthusiast" }
-            ];
-        }
+    function loadVolunteers() {
+        allVolunteers = [...dummyVolunteers];
+        renderVolunteerList();
+        updateVolunteerCountDisplay();
     }
     
     // -------------------------
@@ -123,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateVolunteerCountDisplay() {
         const count = selectedVolunteers.length;
         volunteerCountSpan.textContent = count;
-        // Optional: Update button text if needed
     }
     
     // -------------------------
@@ -139,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // -------------------------
     function closeModal() {
         modal.style.display = "none";
-        // Clear search input
         if (searchInput) {
             searchInput.value = "";
         }
@@ -149,25 +114,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // SAVE VOLUNTEERS (close modal, keep selections)
     // -------------------------
     function saveVolunteersAndClose() {
-        // Selections are already stored in selectedVolunteers array
         updateVolunteerCountDisplay();
         closeModal();
     }
     
     // -------------------------
-    // CREATE PROJECT SUBMIT
+    // CREATE PROJECT - USING DUMMY DATA
     // -------------------------
-    form.addEventListener("submit", async function (event) {
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
         
         // Get form values
-        const title = document.getElementById("projectTitle").value.trim();
+        const name = document.getElementById("projectTitle").value.trim();
         const description = document.getElementById("description").value.trim();
         const dueDate = document.getElementById("dueDate").value;
         const estimatedHours = document.getElementById("estimatedHours").value;
         
         // Validation
-        if (!title) {
+        if (!name) {
             alert("Project title is required");
             return;
         }
@@ -187,64 +151,38 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         
+        // Format date for display
+        let formattedDate = "Not set";
+        if (dueDate) {
+            const date = new Date(dueDate);
+            formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        
         // Create project object
         const newProject = {
-            id: Date.now().toString(),  // Temporary ID for now
-            name: title,
-            description: description || "",
-            dueDate: dueDate || "",
+            id: Date.now().toString(),
+            name: name,
+            description: description || "No description provided",
+            dueDate: formattedDate,
             estimatedHours: estimatedHours || "0",
             status: "Pending",
             tasks: [],
             taskHistory: [],
-            assignedVolunteers: selectedVolunteers  // Store selected volunteer IDs
+            assignedVolunteers: selectedVolunteers
         };
         
-        try {
-            // Try to send to real API if available
-            // Uncomment this when API is ready
-            /*
-            const response = await fetch(`${BASE_URL}/api/projects`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token ? `Bearer ${token}` : ""
-                },
-                body: JSON.stringify({
-                    name: title,
-                    description: description,
-                    dueDate: dueDate,
-                    estimatedHours: parseFloat(estimatedHours) || 0,
-                    volunteerIds: selectedVolunteers
-                })
-            });
-            
-            if (!response.ok) {
-                throw new Error("Failed to create project");
-            }
-            
-            const result = await response.json();
-            const projectId = result.data?.id || result.id;
-            newProject.id = projectId;
-            */
-            
-            // Save to localStorage for now (since no real API)
-            localStorage.setItem('newlyCreatedProject', JSON.stringify(newProject));
-            
-            alert("Project created successfully!");
-            
-            // Reset form
-            form.reset();
-            selectedVolunteers = [];
-            updateVolunteerCountDisplay();
-            
-            // Redirect to Project Details page
-            window.location.href = "/frontend/admin/project-details.html";
-            
-        } catch (error) {
-            console.error("CREATE PROJECT ERROR:", error);
-            alert(error.message || "Failed to create project");
-        }
+        // Save to localStorage
+        localStorage.setItem('newlyCreatedProject', JSON.stringify(newProject));
+        
+        alert("Project created successfully!");
+        
+        // Reset form
+        form.reset();
+        selectedVolunteers = [];
+        updateVolunteerCountDisplay();
+        
+        // Redirect to Project Details page
+        window.location.href = "/frontend/admin/project-details.html";
     });
     
     // -------------------------
@@ -285,9 +223,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // -------------------------
     // INITIALIZE
     // -------------------------
-    async function init() {
-        allVolunteers = await loadVolunteers();
-        updateVolunteerCountDisplay();
+    function init() {
+        loadVolunteers();
     }
     
     init();

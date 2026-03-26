@@ -14,10 +14,10 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation (exactly from design-layout) -->
+        <!-- Sidebar Navigation -->
         <aside>
             <div class="menu-item">
-                <a href="volunteer-dashboard.html">
+                <a href="">
                     <i class="fa-solid fa-chart-column"></i>
                 </a>
                 <span>Dashboard</span>
@@ -85,25 +85,26 @@
                         </div>
                     </div>
 
-<!-- Assign Volunteers Section - Both buttons have plus icon -->
-<div class="assign-section">
-    <button type="button" id="openVolunteerModalBtn" class="assign-btn">
-        <i class="fa-solid fa-plus"></i> Assign Volunteers
-    </button>
-    <button type="button" id="volunteerCountBtn" class="volunteer-count-btn">
-        <i class="fa-solid fa-plus"></i> <span id="volunteerCount">0</span> Volunteers
-    </button>
-</div>
-                    <!-- Submit Button -->
+                    <!-- Assign Volunteers Section -->
+                    <div class="assign-section">
+                        <button type="button" id="openVolunteerModalBtn" class="assign-btn">
+                            <i class="fa-solid fa-plus"></i> Assign Volunteers
+                        </button>
+                        <button type="button" id="volunteerCountBtn" class="volunteer-count-btn">
+                            <i class="fa-solid fa-plus"></i> <span id="volunteerCount">0</span> Volunteers
+                        </button>
+                    </div>
+
+                    <!-- Submit Button - NO ANCHOR TAG -->
                     <div class="submit-section">
-                         <button type="submit" class="submit-btn"> <a href="/frontend/pages/admin/project-details.html">Create Project</a></button>
+                        <button type="submit" class="submit-btn">Create Project</button>
                     </div>
                 </form>
             </div>
         </main>
     </div>
 
-    <!-- Volunteer Modal (hidden by default) -->
+    <!-- Volunteer Modal -->
     <div id="volunteerModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">

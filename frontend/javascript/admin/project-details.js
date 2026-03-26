@@ -1,6 +1,6 @@
 // project-details.js
 
-// Dummy data
+// Dummy data from screenshot
 const dummyProject = {
     id: "dummy-001",
     name: "Community outreach",
@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     renderProjectDetails();
-    setupSearch();
 });
 
 // Render page
@@ -193,18 +192,6 @@ function attachTaskRemoveListeners() {
             }
         });
     });
-}
-
-// Search
-function setupSearch() {
-    const searchInput = document.getElementById('projectSearch');
-
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            console.log('Search:', searchTerm);
-        });
-    }
 }
 
 // Escape HTML

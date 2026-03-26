@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation (exactly from design-layout.html) -->
+        <!-- Sidebar Navigation -->
         <aside>
             <div class="menu-item">
                 <a href="/frontend/pages/admin/admin-dashboard.html">
@@ -54,46 +54,17 @@
 
         <!-- Main Content -->
         <main>
-    <!-- Search Row -->
-    <div class="search-row">
-        <div class="search-container">
-            <input type="text" placeholder="Search projects..." id="projectSearch">
-            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        </div>
+            <!-- Page Title - NO SEARCH BAR ABOVE IT -->
+            <h1 class="project-h1">Project Details</h1>
+
+            <!-- Project Details Content -->
+            <div class="project-details-container" id="projectDetailsContainer">
+                <!-- Dynamic content will be injected by JavaScript -->
+                <!-- Loading state will show here -->
+                <div class="loading-state">Loading project details...</div>
+            </div>
+        </main>
     </div>
-
-    <!-- FIXED: Page Title -->
-    <h1 class="project-h1">Project Details</h1>
-
-    <!-- Project Details Content -->
-    <div class="project-details-container" id="projectDetailsContainer">
-
-        <!-- TEMP FALLBACK CONTENT (will be replaced by JS) -->
-        <h2 class="project-name">Community outreach</h2>
-
-        <div class="project-description">
-            NGOs that focus on education and youth empowerment. He supports activities like community outreach, event organization, and awareness campaigns.
-        </div>
-
-        <div class="project-info-row">
-            <div class="info-item">
-                <div class="info-label">Due Date</div>
-                <div class="info-value">16th June, 2026</div>
-            </div>
-
-            <div class="info-item">
-                <div class="info-label">Estimated Hours</div>
-                <div class="info-value">20 hours</div>
-            </div>
-
-            <div class="info-item">
-                <div class="info-label">Status</div>
-                <div class="info-value">Pending</div>
-            </div>
-        </div>
-
-    </div>
-</main>
 
     <script src="/frontend/javascript/admin/project-details.js"></script>
 </body>
