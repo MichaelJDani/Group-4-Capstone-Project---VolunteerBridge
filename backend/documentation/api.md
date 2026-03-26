@@ -231,7 +231,7 @@ body JSON
 "lastLogin": null
 }
 }
-}
+
 
 ## Admin log-in
 
