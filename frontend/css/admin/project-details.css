@@ -9,6 +9,7 @@ body {
 .project-h1 {
     margin-top: 10px;
     margin-bottom: 20px;
+    padding-left: 20px;
 }
 
 /* Project Details Container */
@@ -22,7 +23,10 @@ body {
     font-weight: 600;
     color: #333;
     margin-bottom: 24px;
-    border-left: 4px solid var(--deep-teal, #1F7A8C);
+    /* border-left: 4px solid var(--deep-teal, #1F7A8C); */
+    padding-left: 16px;
+}
+.project-name-label {
     padding-left: 16px;
 }
 
@@ -43,7 +47,7 @@ body {
     gap: 16px;
     margin-bottom: 32px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #E0E0E0;
+    /* border-bottom: 1px solid #E0E0E0; */
 }
 
 .info-item {
