@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/css/colors.css">
+    <link rel="stylesheet" href="/frontend/css/design-layout.css">
+    <link rel="stylesheet" href="/frontend/css/admin/project-details.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation (exactly from design-layout.html) -->
+        <aside>
+            <div class="menu-item">
+                <a href="volunteer-dashboard.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                </a>
+                <span>Dashboard</span>
+            </div>
+
+            <div class="menu-item active">
+                <a href="volunteer-project.html">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </a>
+                <span>Projects</span>
+            </div>
+
+            <div class="menu-item">
+                <a href="volunteer.html">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </a>
+                <span>Volunteers</span>
+            </div>
+
+            <div class="menu-item">
+                <a href="volunteer-report.html">
+                    <img class="image" src="/frontend/assets/icons/eos-icons_project.png" alt="Reports">
+                </a>
+                <span>Reports</span>
+            </div>
+
+            <div class="menu-item notification-icon">
+                <a href="#">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+                <span>Notifications</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+    <!-- Search Row -->
+    <div class="search-row">
+        <div class="search-container">
+            <input type="text" placeholder="Search projects..." id="projectSearch">
+            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        </div>
+    </div>
+
+    <!-- FIXED: Page Title -->
+    <h1 class="project-h1">Project Details</h1>
+
+    <!-- Project Details Content -->
+    <div class="project-details-container" id="projectDetailsContainer">
+
+        <!-- TEMP FALLBACK CONTENT (will be replaced by JS) -->
+        <h2 class="project-name">Community outreach</h2>
+
+        <div class="project-description">
+            NGOs that focus on education and youth empowerment. He supports activities like community outreach, event organization, and awareness campaigns.
+        </div>
+
+        <div class="project-info-row">
+            <div class="info-item">
+                <div class="info-label">Due Date</div>
+                <div class="info-value">16th June, 2026</div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-label">Estimated Hours</div>
+                <div class="info-value">20 hours</div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-label">Status</div>
+                <div class="info-value">Pending</div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+    <script src="/frontend/javascript/admin/project-details.js"></script>
+</body>
+</html>
