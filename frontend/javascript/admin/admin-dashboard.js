@@ -1,44 +1,47 @@
 // --- BASE URL: switch between localhost and hosted backend ---
-const BASE_URL = "https://volunteer-bridge.com.ng/api"; 
+const BASE_URL = "https://volunteer-bridge.com.ng/api";
 // For local testing, you can change to: "http://localhost:5000/api"
 
-const adminNameEl = document.getElementById('admin-name');
-const logoutBtn = document.getElementById('logout-btn');
+const adminNameEl = document.getElementById("admin-name");
+const logoutBtn = document.getElementById("logout-btn");
 
 // Check JWT and role
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 
 if (!token) {
   // Not logged in
-  window.location.href = '/frontend/admin/admin-login.html';
+  window.location.href = "/frontend/admin/admin-login.html";
 } else {
   // Verify token with backend
   fetch(`${BASE_URL}/auth/me`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Authorization': `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   })
-    .then(res => res.json())
-    .then(data => {
-      if (!data.user || data.user.role !== 'admin') {
+    .then((res) => {
+      if (!res.ok) throw new Error("Unauthorized");
+      return res.json();
+    })
+    .then((data) => {
+      if (!data.user || data.user.role !== "admin") {
         // Not admin
-        localStorage.removeItem('token');
-        window.location.href = '/frontend/admin/admin-login.html';
+        localStorage.removeItem("token");
+        window.location.href = './admin-login.html';
       } else {
         // Show admin info
-        adminNameEl.textContent = data.user.name || 'Admin';
+        adminNameEl.textContent = "Admin";
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
-      localStorage.removeItem('token');
-      window.location.href = '/frontend/admin/admin-login.html';
+      localStorage.removeItem("token");
+      window.location.href = './admin-login.html';
     });
 }
 
 // Logout functionality
-logoutBtn.addEventListener('click', () => {
-  localStorage.removeItem('token');
-  window.location.href = '/frontend/admin/admin-login.html';
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "/frontend/admin/admin-login.html";
 });

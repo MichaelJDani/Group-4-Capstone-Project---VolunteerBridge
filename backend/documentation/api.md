@@ -1,64 +1,149 @@
-## Base end points
+  ## Base end points
 
 GET https://volunteer-bridge-3.onrender.com
 
-# JSON Output
+  # JSON Output
 
-{
-"message": "Welcome to VolunteerBridge API",
-"status": "running",
-"version": "1.0.0"
-}
+  {
+  "message": "Welcome to VolunteerBridge API",
+  "status": "running",
+  "version": "1.0.0"
+  }
 
-## Register
+  ## Register
 
-# request
+  # request
+
+  POST http://localhost:5000/api/auth/register
+
+  raw JSON
+
+  {
+  "name":"John Bull",
+  "email":"johnbull@example.com",
+  "password":"12345698"
+
+  }
+
+  # Output
+
+  JSON
+
+  {
+  "message": "User registered successfully",
+  "user": {
+  "isActive": true,
+  "isVerified": false,
+  "role": "volunteer",
+  "id": 4,
+  "name": "John Bull",
+  "email": "johnbull@example.com",
+  "updatedAt": "2026-03-11T20:54:28.720Z",
+  "createdAt": "2026-03-11T20:54:28.720Z"
+  }
+  }
+
+  ## Log in
+
+  POST http://localhost:5000/api/auth/login
 
 POST https://volunteer-bridge-3.onrender.com/api/auth/register
 
-raw JSON
+  raw JSON body
 
-{
-"name":"John Bull",
-"email":"johnbull@example.com",
-"password":"12345698"
+  {
+  "email":"johnhoe@example.com",
+  "password":"12345698"
+  }
 
-}
+  # Response:
 
-# Output
+  JSON
 
-JSON
+  {
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc3MzI2MjcwNiwiZXhwIjoxNzc1ODU0NzA2fQ.1xa8pZOryvgTIufYb6_uF8p5hsqXk3oC-xLaEQ-NYhY",
+  "user": {
+  "id": 1,
+  "name": "John Hoe",
+  "email": "johnhoe@example.com",
+  "phone_number": null,
+  "isActive": true,
+  "isVerified": false,
+  "role": "volunteer",
+  "resetTokenExpiry": null,
+  "lastLogin": "2026-03-11T20:58:26.357Z",
+  "createdAt": "2026-03-10T15:52:28.000Z",
+  "updatedAt": "2026-03-11T20:58:26.358Z"
+  }
+  }
 
-{
-"message": "User registered successfully",
-"user": {
-"isActive": true,
-"isVerified": false,
-"role": "volunteer",
-"id": 4,
-"name": "John Bull",
-"email": "johnbull@example.com",
-"updatedAt": "2026-03-11T20:54:28.720Z",
-"createdAt": "2026-03-11T20:54:28.720Z"
-}
-}
+  ## LOGIN another user
 
-## Log in
+  POST http://localhost:5000/api/auth/register
+
+  raw JSON
+  request
 
 POST https://volunteer-bridge-3.onrender.com/api/auth/login
 
-# Request
+  }
 
-raw JSON body
+  # response:
 
-{
-"email":"johnhoe@example.com",
-"password":"12345698"
-}
+  {
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc3MzI2MzA0MywiZXhwIjoxNzc1ODU1MDQzfQ.eFmQohsPKQyeLQhhBEe1TOm8-h0jcgHGMAoFnYyVA74",
+  "user": {
+  "id": 4,
+  "name": "John Bull",
+  "email": "johnbull@example.com",
+  "phone_number": null,
+  "isActive": true,
+  "isVerified": false,
+  "role": "volunteer",
+  "resetTokenExpiry": null,
+  "lastLogin": "2026-03-11T21:04:03.348Z",
+  "createdAt": "2026-03-11T20:54:28.000Z",
+  "updatedAt": "2026-03-11T21:04:03.348Z"
+  }
+  }
 
-# Response:
+  ## Register Admin
 
-JSON
+  # request
+
+  # raw JSON
+
+  {
+  "name": "Sunday Oluwasegun",
+  "email":"sundayo@example.com",
+  "password":"12345698@",
+  "role": "admin"
+  }
+
+  # Response
+
+  body JSON
+
+  {
+  "message": "User registered successfully",
+  "user": {
+  "isActive": true,
+  "isVerified": false,
+  "role": "volunteer",
+  "id": 5,
+  "name": "Sunday Oluwasegun",
+  "email": "sundayo@example.com",
+  "updatedAt": "2026-03-12T13:57:28.618Z",
+  "createdAt": "2026-03-12T13:57:28.618Z"
+  }
+  }
+
+  ## Admin log-in
+
+  api
+  POST http://localhost:5000/api/auth/login
 
 {
 "message": "Login successful",
@@ -191,8 +276,89 @@ POST
 - authorization Bearer token inputed
   body
   raw JSON
+  Request
+
   {
-  "name":"Food Distribution to less privileged",
+  "email":"sundayo@example.com",
+  "password":"12345698@"  
+  }
+
+  Response
+
+  {
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTc3MzQzMzk2NywiZXhwIjoxNzc2MDI1OTY3fQ.HcYx2L6TdLsq3za7wDtdbBg9hlmb_aFRiIF2U5MQU48",
+  "user": {
+  "id": 5,
+  "name": "Sunday Oluwasegun",
+  "email": "sundayo@example.com",
+  "phone_number": null,
+  "isActive": true,
+  "isVerified": false,
+  "role": "volunteer",
+  "resetTokenExpiry": null,
+  "lastLogin": "2026-03-13T20:32:47.033Z",
+  "createdAt": "2026-03-12T13:57:28.000Z",
+  "updatedAt": "2026-03-13T20:32:47.037Z"
+  }
+  }
+
+  ## Create Project
+
+  Api http://localhost:5000/api/projects
+  POST
+
+  # request
+
+  - authorization Bearer token inputed
+    body
+    raw JSON
+    {
+    "name":"Food Distribution to less privileged",
+    "description": "Distribution of 10 bags of in small bags of 2kg",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-01",
+    "status": "active"
+
+  }
+
+  # response
+
+  {
+  "success": true,
+  "message": "Project created successfully",
+  "data": {
+  "id": 1,
+  "name": "Food Distribution to less privileged",
+  "description": "Distribution of 10 bags of in small bags of 2kg",
+  "startDate": null,
+  "endDate": null,
+  "status": "active",
+  "createdBy": 5,
+  "updatedAt": "2026-03-13T20:36:52.562Z",
+  "createdAt": "2026-03-13T20:36:52.562Z"
+  }
+  }
+
+  ## Fetched Project
+
+  # api
+
+  - GET http://localhost:5000/api/projects
+
+  # request
+
+  Token inputed on Authorization : Bearer Token
+  body blank
+  response:
+
+  {
+  "success": true,
+  "message": "Projects fetched successfully",
+  "data": [
+  {
+  "id": 1,
+  "name": "Food Distribution to less privileged",
   "description": "Distribution of 10 bags of in small bags of 2kg",
   "start_date": "2026-04-01",
   "end_date": "2026-04-01",
