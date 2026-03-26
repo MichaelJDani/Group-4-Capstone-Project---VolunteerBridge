@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <link rel="stylesheet" href="../../css/admin/admin-profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+      <!-- Sidebar / Bottom Nav -->
+      <aside>
+        <div class="menu-item">
+          <a href="admin-dashboard.html">
+            <i class="fa-solid fa-chart-column"></i>
+          </a>
+          <span>Dashboard</span>
+        </div>
+
+        <div class="menu-item ">
+          <a href="admin-project-menu.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </a>
+          <span>Projects</span>
+        </div>
+
+        <div class="menu-item active">
+          <a href="admin-volunteer.html">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </a>
+          <span>Volunteers</span>
+        </div>
+
+        <div class="menu-item">
+          <a href="admin-report.html">
+             <img class="image" src="/frontend/assets/icons/eos-icons_project.png" alt=""></img>
+          </a>
+          <span>Reports</span>
+        </div>
+
+        <div class="menu-item notification-icon">
+          <a href="#">
+            <i class="fa-solid fa-bell"></i>
+          </a>
+          <span>Notifications</span>
+        </div>
+      </aside>
+
+
+      <!-- main section -->
+       <main>
+       <div class="profile-box">
+        <div class="profile-container">
+            <button class="profile-text">Available</button>
+            <img src="/" alt="/" class="profile-image">
+        </div>
+       </div>
+        <div class="form-container">
+            <form action="/" class="profile-input">
+                <label for="text">Name</label>
+                <input type="text" placeholder="Emeka okafor">
+                <label for="email">Email</label>
+                <input type="email" placeholder="emekaokaforfordummy@gmail.com">
+                <label for="number">Phone no.</label>
+                <input type="number" placeholder="0812345678">
+                <label for="text">Skills</label>
+                <input type="text" placeholder="Graphics Design, UI/UX Design, Motion Design, Animation Design">
+                <Label for="number">Total hours logged</Label>
+                <input type="number" placeholder="15 hours">
+                <label for="text"> Contribution summary</label>
+                <input type="text" placeholder="Tasks 14 | TotalHours 35hrs | Projects 3">
+                <!-- <label for="text"> Task History</label> -->
+            </form>
+            <div class="action-stack">
+                <div>
+                    <button class="edit-btn">Edit changes</button>
+                </div>
+                <div class="btn-container">
+                  <button class="save-btn">Save changes</button>
+                  <button class="delete-btn">Delete volunteer</button>
+                </div>
+            </div>
+        </div>
+       </main>
+    </div>
+</body>
+</html>

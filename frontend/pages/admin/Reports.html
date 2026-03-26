@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Reports - VolunteerBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="/frontend/css/admin/Admin-report.css"">
+</head>
+
+<body>
+    <!-- LAYOUTS -->
+    <div class="layout">
+
+        <!--  SIDEBAR  -->
+        <aside class="sidebar">
+            <div class="nav-item">
+               <i class="fa-solid fa-chart-simple"></i>
+                <span class="nav-label">Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span class="nav-label">Projects</span>
+            </div>
+            <div class="nav-item">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <span class="nav-label">Volunteers</span>
+            </div>
+            <div class="nav-item active">
+               <i class="fa-solid fa-chart-line"></i>
+                <span class="nav-label">Reports</span>
+            </div>
+            <div class="nav-item">
+                <i class="fa-solid fa-bell"></i>
+                <span class="nav-label">Notifications</span>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <div class="container">
+
+                <h2>Admin Reports</h2>
+
+                <div class="content-wrapper">
+                    <div class="left-panel">
+                        <section class="filters">
+                            <select id="filter-select" onchange="applyFilters()">
+                                <option value="">Filter by Project</option>
+                                <option value="community-clean-up">Community Clean-Up</option>
+                                <option value="food-drive">Food Drive</option>
+                                <option value="youth-mentorship">Youth Mentorship</option>
+                                <option value="health-outreach">Health Outreach</option>
+                            </select>
+
+                            <div class="date-filters">
+                                <p>Filter by Date</p>
+                                <div class="date-row">
+                                    <div class="date-group">
+                                        <label for="startDate">Start Date</label>
+                                        <input type="date" id="startDate" onchange="applyFilters()" />
+                                    </div>
+
+                                    <div class="date-group">
+                                        <label for="endDate">End Date</label>
+                                        <input type="date" id="endDate" onchange="applyFilters()"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="export-buttons">
+                            <button class="btn-csv" onclick="exportCSV()">Export to CSV</button>
+                            <button class="btn-pdf" onclick="exportCSV()">Export to PDF</button>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <section class="volunteers-list">
+                            <div class="card">
+                                <div class="avatar"></div>
+                                <p class="volunteer-name">Emeka Okafor</p>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasks</span>
+                                        <span class="stat-value">14</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Hours</span>
+                                        <span class="stat-value">35</span>
+                                        <span class="stat-unit">hrs</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Projects</span>
+                                        <span class="stat-value">3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="avatar"></div>
+                                <p class="volunteer-name">Victory Clement</p>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasks</span>
+                                        <span class="stat-value">15</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Hours</span>
+                                        <span class="stat-value">25</span>
+                                        <span class="stat-unit">hrs</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Projects</span>
+                                        <span class="stat-value">4</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="avatar"></div>
+                                <p class="volunteer-name">Ngozi Emeka</p>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasks</span>
+                                        <span class="stat-value">14</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Hours</span>
+                                        <span class="stat-value">35</span>
+                                        <span class="stat-unit">hrs</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Projects</span>
+                                        <span class="stat-value">3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="avatar"></div>
+                                <p class="volunteer-name">Hassan Daniel</p>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasks</span>
+                                        <span class="stat-value">14</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Hours</span>
+                                        <span class="stat-value">35</span>
+                                        <span class="stat-unit">hrs</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Projects</span>
+                                        <span class="stat-value">3</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="avatar"></div>
+                                <p class="volunteer-name">Bosede Akinola</p>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasks</span>
+                                        <span class="stat-value">15</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Hours</span>
+                                        <span class="stat-value">25</span>
+                                        <span class="stat-unit">hrs</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Projects</span>
+                                        <span class="stat-value">4</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="avatar"></div>
+                                <p class="volunteer-name">Kehinde Oladele</p>
+                                <div class="stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasks</span>
+                                        <span class="stat-value">14</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total Hours</span>
+                                        <span class="stat-value">35</span>
+                                        <span class="stat-unit">hrs</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Projects</span>
+                                        <span class="stat-value">3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <button class="more-button" onclick="loadMore()">More &#8594;</button>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item">
+               <i class="fa-solid fa-chart-simple"></i>
+                <span class="nav-label">Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span class="nav-label">Projects</span>
+            </div>
+            <div class="nav-item">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <span class="nav-label">Volunteers</span>
+            </div>
+            <div class="nav-item active">
+               <i class="fa-solid fa-chart-line"></i>
+                <span class="nav-label">Reports</span>
+            </div>
+            <div class="nav-item">
+                <i class="fa-solid fa-bell"></i>
+                <span class="nav-label">Notifications</span>
+            </div>
+    </nav>
+    <script src="../js/Admin-report.js"></script>
+</body>
+
+</html>

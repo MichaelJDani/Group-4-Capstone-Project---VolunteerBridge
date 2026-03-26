@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - Admin Dashboard/title>
+    <title>Project Details - Admin Dashboard</title>
+    <link rel="stylesheet" href="/frontend/css/admin/admin-project-details.css">
+    <link rel="stylesheet" href="">
 </head>
 <body>
-    <!-- Sidebar Navigation -->
+        <!-- Sidebar Navigation -->
   <aside class="sidebar">
     <nav>
       <ul>
         <li><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-        <li><a href="#"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+        <li><a href="/frontend/pages/admin/admin-project-details.html" class="active"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
         <li><a href="#"><i class="fa-solid fa-users"></i> Volunteers</a></li>
         <li><a href="#"><i class="fa-solid fa-chart-line"></i> Reports</a></li>
         <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
@@ -21,21 +23,26 @@
 
   <!-- Main Content -->
   <main class="main-content">
-
+    <h1 class="project-details">Project Details</h1>
     <!-- Project Overview -->
     <section class="project-overview">
         <div class="project-info">
-            <h2 id="project-name">Project Name</h2>
-            <p>Project Name:</p>
-        <p id="project-desc">Project description will appear here.</p>
+            <div class="project-title">
+                <h3>Project Name</h3>
+                <p id="project-name"></p>
+                <!-- project namewill appear in here -->
+            </div>
+
+        <p id="project-description"></p>
+        <!-- project-description will appear in hear -->
       </div>
         
 
       <!-- Project Meta -->
       <div class="project-meta">
-        <p><strong>Due Date:</strong> <span id="project-due">--</span></p>
-        <p><strong>Estimated Hours:</strong> <span id="project-hours">--</span></p>
-        <p><strong>Status:</strong> <span id="project-status">--</span></p>
+        <p><strong>Due Date:</strong> <br> <span id="project-due">--</span></p>
+        <p><strong>Estimated Hours:</strong> <br> <span id="project-hours">--</span></p>
+        <p><strong>Status:</strong> <br> <span id="project-status">--</span></p>
       </div>
     </section>
 
@@ -68,5 +75,6 @@
   </main>
 
   <script src="/frontend/javascript/admin/admin-project-details.js"></script>
+
 </body>
 </html>

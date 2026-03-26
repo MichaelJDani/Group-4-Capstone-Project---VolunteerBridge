@@ -1,0 +1,191 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: var(--neutral-white);
+}
+
+
+div.container {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Sidebar */
+aside{
+    display:flex;
+    flex-direction: column;
+    padding-top: 100px;
+    align-items: center;
+    margin-top: 60px;
+    gap: 35px;
+}
+
+.menu-item{
+    font-size: 20px;
+    color: var(--neutral-black);
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    line-height: 0.9;
+    font-size: 20px;
+}
+
+.menu-item a{
+    text-decoration: none;
+}
+
+.menu-item i {
+    display: block;
+    color: black;
+    font-size: 22px;
+}
+
+.menu-item span{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+.menu-item.active i {
+    color: var(--deep-teal);
+}
+
+/* Main Content */
+main{
+    padding: 40px 60px;
+}
+.profile-box{
+    display: flex;
+    justify-content: flex-end;
+}
+.profile-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profile-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 20px;
+} 
+.profile-text{
+     background: rgb(255, 255, 255);
+    color: rgb(114, 202, 114); 
+    border: 1px solid rgb(245, 240, 240);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 7px 7px;
+    text-align: center;
+    border-radius: 5px;
+}
+label{
+font-size:13px;
+margin-bottom:4px;
+display:block;
+font-weight: 50px;
+}
+
+input{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #ddd;
+font-size:13px;
+}
+
+input:focus{
+outline:none;
+border-color:#2a7c85;
+}
+.action-stack {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    /* align-items: stretch; */
+    /* height: calc(100vh - 220px); */
+    margin-top: 50px;
+}
+.btn-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.edit-btn {
+    background: #1f7a8c;
+    color: white; 
+    border: 1px solid white;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 10px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.edit-btn:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+.save-btn {
+    background: white;
+    color: gray; 
+    border: 1px solid rgb(204, 200, 200);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+.delete-btn {
+    background: rgb(245, 64, 64);
+    color: white; 
+    border: 1px solid rgb(204, 200, 200);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 10px;
+    text-align: left;
+    border-radius: 5px;
+}
+@media (max-width: 768px){
+    div.container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }
+
+    aside {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        padding: 0;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        gap: 0;
+        z-index: 100;
+    }
+
+    aside .menu-item {
+        flex-direction: column;
+        margin: 0;
+        gap: 2px;
+    }
+    .edit-btn{
+        text-align: center;
+        padding:9px 9px;
+    }
+}

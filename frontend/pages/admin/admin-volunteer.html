@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteers</title>
+    <link rel="stylesheet" href="../../css/admin/admin-volunteer.css">
+    <script src="../../javascript/admin/admin-volunteer.js" defer></script>
+</head>
+<body>
+    <div class="container">
+      <!-- Sidebar / Bottom Nav -->
+      <aside>
+        <div class="menu-item">
+          <a href="admin-dashboard.html">
+            <i class="fa-solid fa-chart-column"></i>
+          </a>
+          <span>Dashboard</span>
+        </div>
+
+        <div class="menu-item ">
+          <a href="admin-project-menu.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </a>
+          <span>Projects</span>
+        </div>
+
+        <div class="menu-item active">
+          <a href="admin-volunteer.html">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </a>
+          <span>Volunteers</span>
+        </div>
+
+        <div class="menu-item">
+          <a href="admin-report.html">
+             <img class="image" src="/frontend/assets/icons/eos-icons_project.png" alt=""></img>
+          </a>
+          <span>Reports</span>
+        </div>
+
+        <div class="menu-item notification-icon">
+          <a href="#">
+            <i class="fa-solid fa-bell"></i>
+          </a>
+          <span>Notifications</span>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Header: title left, search right -->
+       <!-- Search on top -->
+ <div class="search-row">
+  <div class="search-container">
+    <input type="text" placeholder="Search for volunteers..." id="volunteerSearch"/>
+    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+  </div>
+  </div>
+
+   <!-- Title below search -->
+   <h1 class="volunteer-h1">Volunteer</h1>
+        <!-- volunteer + Right actions -->
+        <div class="volunteer-actions">
+          <!-- Left: volunteer List -->
+          <div class="volunteer-container" id="volunteerContainer">
+            <!-- volunteer cards will appear here -->
+             Loading...
+          </div>
+
+          <!-- Right: Actions Stack -->
+          <div class="actions-stack">
+            <button id="moreBtn"> More <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </main>
+    </div>
+ </body>
+</html>
