@@ -227,3 +227,22 @@ body {
         align-self: flex-end;
     }
 }
+
+/* Sidebar Menu Item Hover Effect - Icon Color Change */
+.menu-item:hover i {
+    color: var(--deep-teal);
+}
+
+/* For the Reports icon (image instead of font icon) */
+.menu-item:hover .image {
+    filter: brightness(0) saturate(100%) invert(47%) sepia(89%) saturate(420%) hue-rotate(152deg) brightness(92%) contrast(87%);
+}
+
+/* Optional: Add a smooth transition */
+.menu-item i {
+    transition: color 0.3s ease;
+}
+
+.menu-item .image {
+    transition: filter 0.3s ease;
+}

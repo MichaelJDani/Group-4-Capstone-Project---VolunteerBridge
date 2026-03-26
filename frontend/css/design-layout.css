@@ -58,8 +58,8 @@ aside{
 }
 
 
-.menu-item.active i {
-    color: var(--deep-teal);
+.menu-item:hover i {
+    color: var(--deep-teal #1f7a8c);
 }
 
 /* Main Content */
