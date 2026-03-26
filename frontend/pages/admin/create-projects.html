@@ -1,93 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Create Projects</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <link rel="stylesheet" href="/frontend/css/colors.css">
-  <link rel="stylesheet" href="/frontend/css/admin/create-projects.css">
-
-  <script src="/frontend/javascript/create-project.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Project - VolunteerBridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/css/colors.css">
+    <link rel="stylesheet" href="/frontend/css/design-layout.css">
+    <link rel="stylesheet" href="/frontend/css/admin/create-projects.css">
 </head>
-
 <body>
-  <div class="container">
+    <div class="container">
+        <!-- Sidebar Navigation (exactly from design-layout) -->
+        <aside>
+            <div class="menu-item">
+                <a href="volunteer-dashboard.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                </a>
+                <span>Dashboard</span>
+            </div>
 
-    <aside>
-      <div class="menu-item">
-        <i class="fa-solid fa-chart-column"></i>
-        <span>Dashboard</span>
-      </div>
+            <div class="menu-item active">
+                <a href="volunteer-project.html">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </a>
+                <span>Projects</span>
+            </div>
 
-      <div class="menu-item active">
-        <i class="fa-solid fa-screwdriver-wrench"></i>
-        <span>Projects</span>
-      </div>
+            <div class="menu-item">
+                <a href="volunteer.html">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </a>
+                <span>Volunteers</span>
+            </div>
 
-      <div class="menu-item">
-        <i class="fa-solid fa-hand-holding-heart"></i>
-        <span>Volunteers</span>
-      </div>
+            <div class="menu-item">
+                <a href="volunteer-report.html">
+                    <img class="image" src="/frontend/assets/icons/eos-icons_project.png" alt="Reports">
+                </a>
+                <span>Reports</span>
+            </div>
 
-      <div class="menu-item">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Reports</span>
-      </div>
+            <div class="menu-item notification-icon">
+                <a href="#">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+                <span>Notifications</span>
+            </div>
+        </aside>
 
-      <div class="menu-item">
-        <i class="fa-solid fa-bell"></i>
-        <span>Notifications</span>
-      </div>
-    </aside>
+        <!-- Main Content -->
+        <main>
+            <!-- Page Title -->
+            <h1 class="project-h1">Create New Project</h1>
 
-    <main>
-      <h1 class="page-title">Create Project</h1>
+            <!-- Form Container -->
+            <div class="form-container">
+                <form id="createProjectForm">
+                    <!-- Project Title -->
+                    <div class="form-group">
+                        <label for="projectTitle">Project Title</label>
+                        <input type="text" id="projectTitle" name="projectTitle" placeholder="Enter project title" required>
+                    </div>
 
-      <form id="createProjectForm">
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" placeholder="Enter project description" rows="4"></textarea>
+                    </div>
 
-        <div class="form-group">
-          <label>Project Title</label>
-          <input type="text" id="projectTitle" placeholder="Project Title" required />
+                    <!-- Due Date and Estimated Hours (side by side) -->
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="dueDate">Due Date</label>
+                            <input type="date" id="dueDate" name="dueDate" required>
+                        </div>
+
+                        <div class="form-group half-width">
+                            <label for="estimatedHours">Estimated Hours</label>
+                            <input type="number" id="estimatedHours" name="estimatedHours" placeholder="0" min="0" step="0.5" value="0" required>
+                        </div>
+                    </div>
+
+<!-- Assign Volunteers Section - Both buttons have plus icon -->
+<div class="assign-section">
+    <button type="button" id="openVolunteerModalBtn" class="assign-btn">
+        <i class="fa-solid fa-plus"></i> Assign Volunteers
+    </button>
+    <button type="button" id="volunteerCountBtn" class="volunteer-count-btn">
+        <i class="fa-solid fa-plus"></i> <span id="volunteerCount">0</span> Volunteers
+    </button>
+</div>
+                    <!-- Submit Button -->
+                    <div class="submit-section">
+                         <button type="submit" class="submit-btn"> <a href="/frontend/pages/admin/project-details.html">Create Project</a></button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Volunteer Modal (hidden by default) -->
+    <div id="volunteerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Volunteers</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="searchVolunteer" class="modal-search" placeholder="Search Volunteer...">
+                <div id="volunteerListContainer" class="volunteer-list">
+                    <!-- Volunteer checkboxes will be dynamically added here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveVolunteersBtn" class="save-btn">Save</button>
+            </div>
         </div>
+    </div>
 
-        <div class="form-group">
-          <label>Description</label>
-          <textarea id="description" placeholder="Description"></textarea>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Due Date</label>
-            <input type="date" id="dueDate" />
-          </div>
-
-          <div class="form-group">
-            <label>Estimated Hours</label>
-            <input type="number" id="hours" placeholder="0 Hours" min="1" />
-          </div>
-        </div>
-
-        <div class="assign-section">
-          <button type="button" class="assign-btn">
-            <i class="fa-solid fa-plus"></i>
-            Assign Volunteers
-          </button>
-          <span class="volunteer-count">0 Volunteers</span>
-        </div>
-
-        <div class="submit-section">
-          <button type="submit" class="submit-btn">Submit</button>
-        </div>
-
-      </form>
-    </main>
-  </div>
+    <script src="/frontend/javascript/admin/create-projects.js" defer></script>
 </body>
 </html>
